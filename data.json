@@ -1,0 +1,54 @@
+{
+  "metas": [
+    {
+      "name": "AR Principal",
+      "weapon": "Actualiza aquí",
+      "build": "Bocacha / Cañón / Mira / Cargador / Culata",
+      "use": "Largo alcance"
+    },
+    {
+      "name": "SMG Principal",
+      "weapon": "Actualiza aquí",
+      "build": "Bocacha / Cañón / Láser / Cargador / Empuñadura",
+      "use": "Corto alcance"
+    },
+    {
+      "name": "Sniper",
+      "weapon": "Actualiza aquí",
+      "build": "Mira / Cañón / Munición / Láser / Culata",
+      "use": "Precisión"
+    },
+    {
+      "name": "Support",
+      "weapon": "Actualiza aquí",
+      "build": "Construcción recomendada",
+      "use": "Apoyo del equipo"
+    }
+  ],
+  "mvp": {
+    "name": "Por definir",
+    "region": "Global",
+    "reason": "Seleccionado por SCORPIONBZ",
+    "month": "Mes actual"
+  },
+  "ranking": [
+    {
+      "pos": 1,
+      "name": "SCORPIONBZ",
+      "role": "Founder",
+      "region": "México / Global"
+    },
+    {
+      "pos": 2,
+      "name": "Vacante",
+      "role": "Recruit",
+      "region": "Por definir"
+    },
+    {
+      "pos": 3,
+      "name": "Vacante",
+      "role": "Recruit",
+      "region": "Por definir"
+    }
+  ]
+}

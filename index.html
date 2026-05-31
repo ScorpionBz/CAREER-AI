@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050607">
+<title>Shadow Ops Global</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="splash"><img src="logo.png"><h1>SHADOW OPS</h1><p>GLOBAL [SHDW]</p></div>
+
+<header class="topbar">
+  <div class="mini-brand"><img src="logo.png"><span>SHDW</span></div>
+  <button id="installBtn" class="install hidden">📲 Instalar App</button>
+  <button id="menuBtn" class="menu-btn">☰</button>
+</header>
+
+<nav id="mobileMenu" class="mobile-menu">
+  <a href="#home">Inicio</a>
+  <a href="#join">Unirme</a>
+  <a href="#meta">Meta de armas</a>
+  <a href="#mvp">MVP</a>
+  <a href="#ranking">Ranking</a>
+  <a href="#admin">Zona SCORPIONBZ</a>
+</nav>
+
+<main>
+<section id="home" class="hero">
+  <div class="shade"></div>
+  <div class="hero-content">
+    <img class="main-logo" src="logo.png">
+    <p class="eyebrow">WARZONE ESPORTS COMMUNITY</p>
+    <h1>SHADOW OPS <span>GLOBAL</span></h1>
+    <p class="tagline">Operamos en las sombras. Dominamos el campo.</p>
+    <div class="actions">
+      <a class="primary" href="#join">Unirme al clan</a>
+      <a class="secondary" href="#meta">Ver meta de armas</a>
+    </div>
+  </div>
+</section>
+
+<section class="card founder">
+  <div><p class="label">Founder & Global Commander</p><h2>SCORPIONBZ</h2><p>Identidad oficial del fundador de Shadow Ops Global [SHDW].</p></div>
+  <div class="rank-badge">👑</div>
+</section>
+
+<section id="join" class="section">
+  <h2>Únete a Shadow Ops</h2>
+  <p class="muted">Llena tu solicitud. Por ahora se guarda en la app/dispositivo; después la conectamos a Google Forms o base de datos para recibirlas automáticamente.</p>
+  <form id="joinForm" class="form">
+    <input name="gamertag" placeholder="Gamertag de Warzone" required>
+    <input name="activision" placeholder="Activision ID">
+    <select name="region"><option>México</option><option>North America</option><option>Brasil</option><option>España</option><option>LATAM</option><option>Internacional</option></select>
+    <select name="platform"><option>PlayStation</option><option>Xbox</option><option>PC</option></select>
+    <input name="age" placeholder="Edad">
+    <input name="kd" placeholder="K/D aproximado">
+    <input name="language" placeholder="Idioma principal">
+    <textarea name="reason" placeholder="¿Por qué quieres unirte?" rows="4"></textarea>
+    <button class="primary" type="submit">Enviar solicitud</button>
+  </form>
+  <div id="joinMsg" class="success hidden">Solicitud guardada. Próximamente se enviará directo al panel de SCORPIONBZ.</div>
+</section>
+
+<section id="meta" class="section">
+  <h2>Meta de armas</h2>
+  <p class="muted">Este apartado se actualizará según la temporada. Cuando quieras cambiar armas, editamos data.json o lo conectamos a una fuente externa.</p>
+  <div id="metaList" class="grid"></div>
+</section>
+
+<section id="mvp" class="card mvp">
+  <h2>Jugador del mes</h2>
+  <div id="mvpBox"></div>
+</section>
+
+<section id="ranking" class="section">
+  <h2>Ranking global</h2>
+  <div id="rankingList" class="ranking"></div>
+</section>
+
+<section class="section">
+  <h2>Regiones oficiales</h2>
+  <div class="grid">
+    <article class="region">🇲🇽<strong>México</strong><small>Líder: Vacante</small></article>
+    <article class="region">🇺🇸<strong>North America</strong><small>Líder: Vacante</small></article>
+    <article class="region">🇧🇷<strong>Brasil</strong><small>Líder: Vacante</small></article>
+    <article class="region">🇪🇸<strong>España</strong><small>Líder: Vacante</small></article>
+    <article class="region">🌎<strong>LATAM</strong><small>Líder: Vacante</small></article>
+    <article class="region">🌏<strong>Internacional</strong><small>Líder: Vacante</small></article>
+  </div>
+</section>
+
+<section id="admin" class="section admin">
+  <h2>Zona SCORPIONBZ</h2>
+  <p class="muted">Zona privada visual para seleccionar MVP y revisar solicitudes guardadas en este dispositivo.</p>
+  <input id="pinInput" placeholder="PIN de comandante">
+  <button id="unlockBtn" class="secondary">Entrar</button>
+  <div id="adminPanel" class="hidden">
+    <h3>Seleccionar jugador del mes</h3>
+    <input id="mvpName" placeholder="Nombre del MVP">
+    <input id="mvpRegion" placeholder="Región">
+    <textarea id="mvpReason" rows="3" placeholder="Motivo"></textarea>
+    <button id="saveMvp" class="primary">Guardar MVP</button>
+    <h3>Solicitudes recibidas en este dispositivo</h3>
+    <div id="applications"></div>
+  </div>
+</section>
+
+<section class="card fairplay">
+  <h2>Juego limpio</h2>
+  <p>Tolerancia cero contra hacks, Cronus, XIM, Strike Pack, aimbot, wallhack o cualquier ventaja injusta.</p>
+</section>
+
+<footer>
+  <p>Shadow Ops Global [SHDW]</p>
+  <a href="https://discord.gg/ePPWaKj4n" target="_blank">Discord</a>
+  <a href="https://www.facebook.com/share/1ENsAhVjDb/" target="_blank">Facebook</a>
+  <a href="http://tiktok.com/@scorpbz" target="_blank">TikTok</a>
+  <a href="https://www.instagram.com/scorp_bz?igsh=MWNrdTh3a3o1ZzJ1ag%3D%3D" target="_blank">Instagram</a>
+</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
