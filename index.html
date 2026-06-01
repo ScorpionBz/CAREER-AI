@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>Shadow Ops Global [SHDW]</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="sidebarOverlay" class="sidebarOverlay"></div>
+<div id="splash">
+  <img src="logo.png" alt="SHDW">
+  <h1>SHADOW OPS</h1>
+  <p>GLOBAL [SHDW]</p>
+</div>
+
+<aside class="sidebar">
+  <button id="closeSidebar" class="closeSidebar" aria-label="Cerrar menú">✕</button>
+  <div class="brand">
+    <img src="logo.png" alt="Logo">
+    <div>
+      <strong>SHADOW OPS</strong>
+      <span>GLOBAL [SHDW]</span>
+    </div>
+  </div>
+
+  <nav>
+    <a class="active" href="#inicio">🏠 Inicio</a>
+    <a href="#clan">🦅 Clan</a>
+    <a href="#miembros">👥 Miembros</a>
+    <a href="#ranking">🏆 Ranking</a>
+    <a href="#torneos">🎖️ Torneos</a>
+    <a href="#noticias">📰 Noticias</a>
+    <a href="#galeria">🖼️ Galería</a>
+    <a href="#reclutamiento">📥 Reclutamiento</a>
+    <a href="#vip">💎 Perfiles VIP</a>
+    <a href="#command">👑 Command Center</a>
+  </nav>
+
+  <div class="privateCard">
+    <h3>COMMAND CENTER</h3>
+    <p>Zona privada para ScorpionBz</p>
+    <a href="#command">Entrar</a>
+  </div>
+</aside>
+
+<header class="topbar">
+  <button id="menuBtn">☰</button>
+  <div class="search">🔎 <input placeholder="Buscar jugador..."></div>
+  <button id="installBtn" class="install hidden">📲 Instalar</button>
+  <button id="shareBtn" class="shareBtn">📤 Compartir</button>
+  <div class="userBadge"><span>🔔</span><strong>ScorpionBz</strong><small>Fundador</small></div>
+</header>
+
+<main class="main">
+  <section id="inicio" class="hero">
+    <div class="heroOverlay"></div>
+    <div class="heroContent">
+      <img src="logo.png" class="heroLogo">
+      <h1>SHADOW OPS</h1>
+      <h2>GLOBAL <span>[SHDW]</span></h2>
+      <p>OPERAMOS EN LAS SOMBRAS,<br><span>DOMINAMOS EL CAMPO.</span></p>
+      <div class="socials">
+        <a href="https://discord.gg/ePPWaKj4n" target="_blank">Discord</a>
+        <a href="https://www.facebook.com/share/1ENsAhVjDb/" target="_blank">Facebook</a>
+        <a href="http://tiktok.com/@scorpbz" target="_blank">TikTok</a>
+        <a href="https://www.instagram.com/scorp_bz?igsh=MWNrdTh3a3o1ZzJ1ag%3D%3D" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="statRow">
+    <article><span>👥</span><small>Miembros activos</small><strong id="statMembers">0</strong><p>Jugadores</p></article>
+    <article><span>🏆</span><small>Victorias del clan</small><strong id="statWins">0</strong><p>Victorias</p></article>
+    <article><span>🎯</span><small>K/D promedio</small><strong id="statKD">0.00</strong><p>Global</p></article>
+    <article><span>🎖️</span><small>Torneos jugados</small><strong id="statTournaments">0</strong><p>Torneos</p></article>
+    <article><span>🌐</span><small>Regiones activas</small><strong>6</strong><p>Regiones</p></article>
+  </section>
+
+  <div class="gridTwo">
+    <section id="clan" class="panel">
+      <div class="panelHead">
+        <h2>Nuestras regiones</h2>
+        <button>Ver todas</button>
+      </div>
+      <div class="regions">
+        <article>🇲🇽<strong>México</strong><small id="mxCount">0 miembros</small></article>
+        <article>🇺🇸<strong>North America</strong><small id="naCount">0 miembros</small></article>
+        <article>🇧🇷<strong>Brasil</strong><small id="brCount">0 miembros</small></article>
+        <article>🇪🇸<strong>España</strong><small id="esCount">0 miembros</small></article>
+        <article>🌎<strong>LATAM</strong><small id="latamCount">0 miembros</small></article>
+        <article>🌍<strong>Internacional</strong><small id="intCount">0 miembros</small></article>
+      </div>
+    </section>
+
+    <section id="ranking" class="panel">
+      <div class="panelHead">
+        <h2>Top 5 Ranking Global</h2>
+        <button>Ver ranking completo</button>
+      </div>
+      <div id="rankingList" class="ranking"></div>
+    </section>
+  </div>
+
+  <div class="gridThree">
+    <section class="panel">
+      <h2>¿Quiénes somos?</h2>
+      <p>Shadow Ops Global [SHDW] es una organización internacional de jugadores competitivos unidos por la disciplina, el respeto y el trabajo en equipo.</p>
+      <p>No somos solo un clan, somos una familia.</p>
+      <a class="redBtn" href="#reclutamiento">Conoce más</a>
+    </section>
+
+    <section class="panel manifesto">
+      <h2>Nuestro manifiesto</h2>
+      <ul>
+        <li>☠️ Operamos en las sombras.</li>
+        <li>⚔️ Dominamos el campo.</li>
+        <li>🛡️ Lealtad ante todo.</li>
+        <li>🏆 Respeto siempre.</li>
+        <li>👥 Familia para siempre.</li>
+      </ul>
+      <strong>UNA SOMBRA. UN OBJETIVO.<br>NINGÚN SOBREVIVIENTE.</strong>
+    </section>
+
+    <section class="panel fairplay">
+      <h2>Juego limpio · Tolerancia cero</h2>
+      <p>En Shadow Ops Global [SHDW] no toleramos hacks, Cronus, XIM ni ventajas injustas.</p>
+      <ul>
+        <li>Prohibido software ilegal</li>
+        <li>Prohibido Cronus / XIM</li>
+        <li>Reportes de comunidad</li>
+        <li>Sanciones permanentes</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="gridNews">
+    
+<section id="torneos" class="panel tournamentsPanel">
+  <div class="panelHead">
+    <h2>Torneos SHDW</h2>
+    <button>Próximamente</button>
+  </div>
+  <div class="tournamentCards">
+    <article>
+      <strong>🏆 Torneo Interno SHDW</strong>
+      <p>Primer evento competitivo para miembros oficiales del clan.</p>
+      <small>Estado: En preparación</small>
+    </article>
+    <article>
+      <strong>🌎 Regional Showdown</strong>
+      <p>México, LATAM, Brasil, España, North America e Internacional.</p>
+      <small>Estado: Próximamente</small>
+    </article>
+    <article>
+      <strong>👑 World Championship SHDW</strong>
+      <p>Los mejores operadores competirán por el campeonato global.</p>
+      <small>Estado: Futuro</small>
+    </article>
+  </div>
+</section>
+
+<section id="galeria" class="panel galleryPanel">
+  <div class="panelHead">
+    <h2>Galería SHDW</h2>
+    <button>Clips y victorias</button>
+  </div>
+  <div class="galleryGrid">
+    <article>🎮<strong>Clips destacados</strong><small>Próximamente</small></article>
+    <article>🏆<strong>Victorias</strong><small>Capturas del clan</small></article>
+    <article>👑<strong>MVPs</strong><small>Jugadores destacados</small></article>
+    <article>🦅<strong>Momentos SHDW</strong><small>Comunidad</small></article>
+  </div>
+</section>
+<section id="noticias" class="panel newsPanel">
+      <div class="panelHead">
+        <h2>Últimas noticias</h2>
+        <button>Ver todas</button>
+      </div>
+      <div id="newsList" class="newsList"></div>
+    </section>
+
+    <section id="mvp" class="panel mvpPanel">
+      <h2>MVP del mes</h2>
+      <div id="mvpBox"></div>
+    </section>
+
+    <section id="miembros" class="panel">
+      <h2>Miembros oficiales</h2>
+      <div id="membersList" class="membersList"></div>
+    </section>
+  </div>
+
+  
+<section class="panel founder20">
+  <h2>Founder 20 SHDW</h2>
+  <p>Los primeros 20 miembros aceptados oficialmente por ScorpionBz recibirán beneficios exclusivos de fundador.</p>
+  <div class="founderBenefits">
+    <span>🏅 Insignia Fundador SHDW</span>
+    <span>👑 Lugar en el Hall of Fame</span>
+    <span>⭐ Perfil destacado</span>
+    <span>🎖️ Beneficios permanentes</span>
+  </div>
+</section>
+
+<section id="vip" class="panel vipSection">
+  <div class="panelHead">
+    <h2>Perfiles VIP SHDW</h2>
+    <button>Premium</button>
+  </div>
+  <p>Los miembros VIP podrán crear y actualizar su perfil destacado. Más adelante se conectará a Stripe o Mercado Pago para activar suscripciones reales.</p>
+
+  <div id="vipProfilesList" class="vipProfiles"></div>
+
+  <h3>Crear / actualizar perfil VIP</h3>
+  <form id="vipProfileForm" class="vipForm">
+    <input name="gamertag" placeholder="Gamertag" required>
+    <input name="email" type="email" placeholder="Correo usado en SHDW" required>
+    <input name="discord" placeholder="Discord">
+    <input name="region" placeholder="Región">
+    <input name="rank" placeholder="Rango">
+    <input name="avatar" placeholder="URL de avatar o imagen">
+    <textarea name="bio" rows="3" placeholder="Biografía de jugador"></textarea>
+    <input name="vipCode" placeholder="Código VIP / comprobante">
+    <button class="redBtn" type="submit">Guardar perfil VIP</button>
+    <p id="vipMsg" class="success hidden">Perfil VIP enviado. ScorpionBz debe aprobarlo.</p>
+  </form>
+</section>
+<section id="reclutamiento" class="recruit">
+    <div>
+      <h2>Reclutamiento abierto</h2>
+      <p>¿Tienes lo que se necesita para ser SHDW?</p>
+      <div class="recruitIcons">
+        <span>👥 Jugadores comprometidos</span>
+        <span>⚔️ Activos y competitivos</span>
+        <span>🛡️ Disciplina y respeto</span>
+      </div>
+    </div>
+    <form id="applyForm">
+      <input name="gamertag" placeholder="Gamertag" required>
+      <input name="email" type="email" placeholder="Correo electrónico" required>
+      <input name="activision" placeholder="Activision ID">
+      <input name="discord" placeholder="Discord">
+      <select name="region">
+        <option>México</option><option>North America</option><option>Brasil</option><option>España</option><option>LATAM</option><option>Internacional</option>
+      </select>
+      <select name="platform"><option>PlayStation</option><option>Xbox</option><option>PC</option></select>
+      <input name="kd" placeholder="K/D aproximado">
+      <textarea name="reason" placeholder="¿Por qué quieres unirte?" rows="3"></textarea>
+      <button class="redBtn" type="submit">Postúlate ahora →</button>
+      <button id="shareRecruitBtn" class="shareBtn wide" type="button">📤 Compartir app SHDW</button>
+      <p id="applyMsg" class="success hidden">Solicitud enviada al Command Center.</p>
+    </form>
+  </section>
+
+  <section id="command" class="panel command">
+    <h2>Command Center · ScorpionBz</h2>
+    <p>Panel privado conectado a Firebase.</p>
+
+    <div id="loginBox" class="loginBox">
+      <input id="adminEmail" type="email" placeholder="Correo admin">
+      <input id="adminPass" type="password" placeholder="Contraseña">
+      <button id="loginBtn" class="redBtn">Entrar</button>
+    </div>
+
+    <div id="adminPanel" class="hidden">
+      <div class="adminTop">
+        <strong id="adminUser">Admin</strong>
+        <button id="logoutBtn">Salir</button>
+      </div>
+
+      <div class="adminGrid">
+        <article>
+          <h3>Agregar miembro</h3>
+          <input id="mGamertag" placeholder="Gamertag">
+          <input id="mRank" placeholder="Rango" value="Recruit">
+          <input id="mRegion" placeholder="Región">
+          <input id="mDiscord" placeholder="Discord">
+          <input id="mKD" placeholder="K/D">
+          <input id="mWins" placeholder="Victorias">
+          <button id="addMemberBtn" class="redBtn">Agregar miembro</button>
+        </article>
+
+        <article>
+          <h3>MVP del mes</h3>
+          <input id="mvpName" placeholder="Jugador">
+          <input id="mvpRegion" placeholder="Región">
+          <textarea id="mvpReason" placeholder="Motivo" rows="3"></textarea>
+          <button id="saveMvpBtn" class="redBtn">Guardar MVP</button>
+        </article>
+
+        <article>
+          <h3>Publicar noticia</h3>
+          <input id="newsTitle" placeholder="Título">
+          <textarea id="newsBody" placeholder="Contenido" rows="3"></textarea>
+          <button id="addNewsBtn" class="redBtn">Publicar</button>
+        </article>
+      </div>
+
+      
+<h3>Gestión de miembros</h3>
+<div id="adminMembersList"></div>
+
+      <h3>Solicitudes pendientes</h3>
+      <div id="requestsList"></div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="logo.png">
+    <div>
+      <strong>Shadow Ops Global [SHDW]</strong>
+      <p>© 2026 Todos los derechos reservados.</p>
+    </div>
+    <div class="footerLinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#miembros">Miembros</a>
+      <a href="#ranking">Ranking</a>
+      <a href="#reclutamiento">Reclutamiento</a>
+    </div>
+  </footer>
+</main>
+
+<button id="floatingShareBtn" class="floatingShareBtn" type="button">📤</button>
+<script type="module" src="app.js"></script>
+</body>
+</html>
