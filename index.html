@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="theme-color" content="#050505"><title>Shadow Ops Global 4.1</title><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css"></head><body>
+<div id="splash-screen">
+  <div class="splash-bg"></div>
+  <img src="logo.png" class="splash-logo" alt="SHDW">
+  <h1>SHADOW OPS GLOBAL</h1>
+  <p>[SHDW]</p>
+  <div class="loading-bar"><div class="loading-progress"></div></div>
+  <span id="loading-tip">Operamos en las sombras. Dominamos el campo.</span>
+</div>
+<div id="splash"><img src="logo.png"><h1>SHADOW OPS</h1><p>GLOBAL 4.1</p></div><div id="overlay"></div>
+
+<div id="authGate" class="authGate hidden">
+  <div class="authCard">
+    <img src="logo.png" alt="SHDW">
+    <h1>SHADOW OPS GLOBAL</h1>
+    <p>[SHDW] · Gamer Network</p>
+    <div class="authActions">
+      <button id="showRegister" class="red">Registrarse</button>
+      <button id="showLogin">Iniciar sesión</button>
+    </div>
+
+    <form id="registerForm" class="authForm">
+      <input name="gamertag" placeholder="Gamertag" required>
+      <input name="email" type="email" placeholder="Correo" required>
+      <input name="photo" placeholder="URL foto de perfil">
+      <input name="discord" placeholder="Discord">
+      <input name="region" placeholder="Región">
+      <select name="platform"><option>PlayStation</option><option>Xbox</option><option>PC</option><option>Mobile</option></select>
+      <input name="kd" placeholder="K/D">
+      <label class="rules"><input type="checkbox" required> Acepto las reglas SHDW</label>
+      <button class="red" type="submit">Crear cuenta SHDW</button>
+    </form>
+
+    <form id="loginPlayerForm" class="authForm hidden">
+      <input name="email" type="email" placeholder="Correo registrado" required>
+      <input name="gamertag" placeholder="Gamertag" required>
+      <button class="red" type="submit">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<aside id="side"><button id="close">✕</button><div class="brand"><img src="logo.png"><b>SHADOW OPS</b><span>GLOBAL [SHDW]</span></div><nav>
+<button data-tab="home" data-i18n="navHome">🏠 Inicio</button><button data-tab="profiles" data-i18n="navProfiles">👤 Perfiles</button><button data-tab="rank" data-i18n="navRanking">🏆 Ranking</button><button data-tab="xp" data-i18n="navXP">🎖️ XP</button><button data-tab="tour" data-i18n="navTournaments">⚔️ Torneos</button><button data-tab="gallery" data-i18n="navGallery">📸 Galería</button><button data-tab="notify" data-i18n="navNotifications">🔔 Notificaciones</button><button data-tab="vip" data-i18n="navVIP">💎 VIP</button><button data-tab="hall" data-i18n="navHall">👑 Hall of Fame</button><button data-tab="admin" data-i18n="navCommand">🦅 Command Center</button>
+</nav></aside>
+<header><button id="menu">☰</button><input id="search" data-i18n-placeholder="search" placeholder="Buscar jugador..."><select id="lang"><option value="es">ES</option><option value="en">EN</option><option value="pt">PT</option><option value="fr">FR</option></select><button id="share">📤</button><button id="install" class="hide">📲</button><button id="topProfile" class="profileBtn">👤 <span id="topName">ScorpionBz</span></button><button id="playerLogout" class="hide">Salir</button></header>
+<main>
+<section id="home" class="tab active"><div class="hero"><div><img src="logo.png"><h1>SHADOW OPS</h1><h2>GLOBAL <span>[SHDW]</span></h2><p data-i18n="slogan">OPERAMOS EN LAS SOMBRAS, DOMINAMOS EL CAMPO.</p><button data-tab="profiles" class="red" data-i18n="createProfile">Crear perfil</button><button data-tab="tour" data-i18n="tournaments">Torneos</button><button id="vipSoon">VIP</button></div></div><div class="stats"><article>👥<b id="stM">0</b><small data-i18n="members">Miembros</small></article><article>🏆<b id="stW">0</b><small data-i18n="victories">Victorias</small></article><article>🎯<b id="stK">0.00</b><small>K/D</small></article><article>🎖️<b id="stXP">0</b><small>XP Clan</small></article></div><div class="grid3"><article><h3>Founder 20</h3><p data-i18n="founderText">Primeros 20 aceptados reciben insignia exclusiva y bonus XP.</p></article><article><h3 data-i18n="seasonTitle">Temporada 1</h3><p data-i18n="seasonText">XP, misiones, rachas, torneos y reputación SHDW.</p></article><article><h3 data-i18n="fairTitle">Juego Limpio</h3><p data-i18n="fairText">Tolerancia cero a hacks, Cronus, XIM y ventajas injustas.</p></article></div></section>
+<section id="profiles" class="tab"><article><h2 data-i18n="profilesTitle">Perfiles</h2><form id="profileForm" class="form"><input name="gamertag" placeholder="Gamertag" required><input name="email" type="email" placeholder="Correo"><input name="photo" placeholder="URL foto"><input name="discord" placeholder="Discord"><input name="region" placeholder="Región"><input name="role" placeholder="Rol"><input name="kd" placeholder="K/D"><input name="wins" placeholder="Victorias"><textarea name="bio" placeholder="Biografía"></textarea><button class="red" data-i18n="saveProfile">Guardar perfil</button><button type="button" id="daily" data-i18n="dailyCheck">🎁 Check-in diario</button></form></article><div id="profilesList" class="cards"></div></section>
+<section id="rank" class="tab"><article><h2 data-i18n="rankingTitle">Ranking Global</h2><div id="rankList" class="rows"></div></article></section>
+<section id="xp" class="tab"><article><h2 data-i18n="xpTitle">Sistema XP</h2><div class="grid4"><b>+25 XP<br><small>Check-in</small></b><b>+500 XP<br><small data-i18n="acceptedRecruit">Recluta aceptado</small></b><b>+1500 XP<br><small data-i18n="wonTournament">Torneo ganado</small></b><b>+2000 XP<br><small>MVP</small></b></div><div id="xpList" class="rows"></div></article></section>
+<section id="tour" class="tab"><article><h2 data-i18n="tourTitle">Torneos Balanceados</h2><form id="tourForm" class="form"><input name="gamertag" placeholder="Gamertag" required><input name="discord" placeholder="Discord"><input name="kd" placeholder="K/D"><input name="xp" placeholder="XP"><input name="wins" placeholder="Victorias"><select name="role"><option>Asalto</option><option>Sniper</option><option>Soporte</option><option>Líder</option></select><button class="red" data-i18n="register">Registrarme</button></form></article><div class="grid2"><article><h3 data-i18n="registered">Registrados</h3><div id="tourPlayers"></div></article><article><h3 data-i18n="teams">Equipos</h3><div id="teams"></div></article></div></section>
+<section id="gallery" class="tab"><article><h2 data-i18n="galleryTitle">Galería de victorias y kills</h2><form id="victoryForm" class="form"><input name="gamertag" placeholder="Gamertag" required><input name="image" placeholder="URL captura" required><input name="kills" placeholder="Kills"><input name="mode" placeholder="Modo"><input name="team" placeholder="Equipo"><textarea name="notes" placeholder="Notas"></textarea><button class="red" data-i18n="uploadReview">Subir a revisión</button></form></article><article><h3 data-i18n="killsChart">Gráfica de kills</h3><div id="killsChart" class="chart"></div></article><div id="galleryList" class="cards"></div></section>
+<section id="notify" class="tab"><article><h2 data-i18n="notificationsTitle">Notificaciones</h2><div id="notifyList"></div></article></section>
+<section id="vip" class="tab"><article class="vip"><h2>💎 SHDW VIP</h2><p data-i18n="vipText">Próximamente: perfiles premium, insignias, banners, estadísticas avanzadas y recompensas.</p><button id="vipSoon2" class="red" data-i18n="comingSoon">Próximamente</button></article></section>
+<section id="hall" class="tab"><article><h2 data-i18n="hallTitle">Hall of Fame</h2><div id="hallList" class="cards"></div></article></section>
+<section id="admin" class="tab"><article><h2>Command Center · ScorpionBz</h2><div id="login"><input id="email" type="email" placeholder="Correo admin"><input id="pass" type="password" placeholder="Contraseña"><button id="loginBtn" class="red">Entrar</button></div><div id="panel" class="hide"><button id="logout">Salir</button><div class="grid4"><div><h3>Agregar miembro</h3><input id="mg" placeholder="Gamertag"><input id="mr" value="Recruit"><input id="mreg" placeholder="Región"><input id="md" placeholder="Discord"><input id="mkd" placeholder="K/D"><input id="mw" placeholder="Victorias"><input id="mxp" placeholder="XP"><button id="addM" class="red">Agregar</button></div><div><h3>MVP</h3><input id="mvpN" placeholder="Jugador"><input id="mvpR" placeholder="Región"><textarea id="mvpWhy" placeholder="Motivo"></textarea><button id="saveMVP" class="red">Guardar</button></div><div><h3>Noticia</h3><input id="nt" placeholder="Título"><textarea id="nb" placeholder="Contenido"></textarea><button id="addNews" class="red">Publicar</button></div><div><h3>Torneos</h3><input id="teamSize" value="4"><button id="genTeams" class="red">Sortear</button><button id="clearTour">Limpiar</button></div></div><h3>Solicitudes</h3><div id="reqList"></div><h3>Miembros</h3><div id="adminMembers"></div><h3>Victorias pendientes</h3><div id="victoryReqs"></div></div></article></section>
+</main><div id="modal" class="hide"><div><button id="closeModal">✕</button><h2 data-i18n="myProfile">Mi perfil SHDW</h2><div id="modalContent"></div></div></div><nav class="bottomNav"><button data-tab="home">🏠</button><button data-tab="profiles">👤</button><button data-tab="rank">🏆</button><button data-tab="gallery">📸</button><button data-tab="admin">👑</button></nav><button id="floatShare">📤</button><script type="module" src="app.js"></script></body></html>
