@@ -401,8 +401,10 @@ window.heartClip = async id => {
   });
 };
 
-// IA básica para streamers sin pagar API
+// IA básica mejorada para streamers sin pagar API
 const aiStreamerForm = document.getElementById("aiStreamerForm");
+
+const randomPick = list => list[Math.floor(Math.random() * list.length)];
 
 if (aiStreamerForm) {
   aiStreamerForm.onsubmit = e => {
@@ -413,48 +415,40 @@ if (aiStreamerForm) {
     const type = data.type;
     const result = document.getElementById("aiResult");
 
-    let text = "";
-
-    if (type === "titulo") {
-      text = `
-        🔥 Directo Épico de ${game}<br>
-        🎮 Hoy toca romper la partida con la comunidad SHDW<br>
-        💀 ¿Podrán detenernos?
-      `;
-    }
-
-    if (type === "hashtags") {
-      text = `
-        #${game.replaceAll(" ","")} #ShadowOpsGlobal #SHDW #StreamerLatino #Gaming #Warzone #Twitch #TikTokGaming #ClipsGaming #ComunidadGamer
-      `;
-    }
-
-    if (type === "youtube") {
-      text = `
-        Bienvenidos a un nuevo video de ${game}. En este directo jugamos con la comunidad de Shadow Ops Global, buscamos buenas partidas, clips épicos y nuevos miembros para el clan. No olvides apoyar con tu like y seguirme para más contenido.
-      `;
-    }
-
-    if (type === "ideas") {
-      text = `
-        1. Reto de ganar una partida con suscriptores.<br>
-        2. Mejores clips de la semana.<br>
-        3. Jugando con miembros nuevos de SHDW.<br>
-        4. Torneo interno entre streamers.<br>
-        5. Reaccionando a clips de la comunidad.
-      `;
-    }
-
-    if (type === "sorteo") {
-      text = `
-        🎁 Sorteo SHDW: participa siguiendo el canal, dejando corazón en el clip y compartiendo el directo. Premio sugerido: pase de batalla, rol VIP o entrada a torneo exclusivo.
-      `;
-    }
+    const ideas = {
+      titulo: [
+        `🔥 Hoy rompemos ${game} con la comunidad SHDW`,
+        `💀 Directo intenso de ${game}: ¿ganamos o morimos?`,
+        `🎮 Subiendo nivel en ${game} con Shadow Ops Global`,
+        `👑 Noche de clips épicos en ${game}`,
+        `🚀 Camino a ser leyenda SHDW en ${game}`
+      ],
+      hashtags: [
+        `#${game.replaceAll(" ","")} #ShadowOpsGlobal #SHDW #StreamerLatino #Gaming`,
+        `#GamingLatino #ClipsGaming #${game.replaceAll(" ","")} #StreamerPequeño #SHDW`,
+        `#TwitchLatam #TikTokGaming #ShadowOps #WarzoneClips #ComunidadGamer`
+      ],
+      youtube: [
+        `Nuevo video de ${game} con la comunidad de Shadow Ops Global. Apóyame con tu like y únete al clan.`,
+        `Hoy jugamos ${game}, sacamos buenos clips y buscamos nuevos miembros para SHDW.`,
+        `Partidas intensas, risas y momentos épicos en ${game}. Bienvenido a Shadow Ops Global.`
+      ],
+      ideas: [
+        `1. Reto jugando con seguidores.<br>2. Reaccionar a clips SHDW.<br>3. Torneo entre streamers.<br>4. Mejores jugadas de la semana.`,
+        `1. Solo armas difíciles.<br>2. Squad con miembros nuevos.<br>3. Directo de entrenamiento.<br>4. Sorteo para seguidores.`,
+        `1. Camino a la victoria.<br>2. Jugando con la comunidad.<br>3. Ranking de clips.<br>4. Colaboración con otro streamer.`
+      ],
+      sorteo: [
+        `🎁 Sortea un rol VIP entre quienes den corazón a tu clip y compartan tu directo.`,
+        `🎁 Premio: entrada a torneo SHDW para quienes sigan tu canal y comenten tu gamertag.`,
+        `🎁 Sorteo semanal: pase de batalla, perfil destacado o colaboración con otro streamer.`
+      ]
+    };
 
     if (result) {
       result.innerHTML = `
         <h3>🤖 Resultado IA SHDW</h3>
-        <p>${text}</p>
+        <p>${randomPick(ideas[type])}</p>
       `;
     }
   };
