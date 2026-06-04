@@ -46,7 +46,42 @@
 <main>
 <section id="home" class="tab active"><div class="hero"><div><img src="logo.png"><h1>SHADOW OPS</h1><h2>GLOBAL <span>[SHDW]</span></h2><p data-i18n="slogan">OPERAMOS EN LAS SOMBRAS, DOMINAMOS EL CAMPO.</p><button data-tab="profiles" class="red" data-i18n="createProfile">Crear perfil</button><button data-tab="tour" data-i18n="tournaments">Torneos</button><button id="vipSoon">VIP</button></div></div><div class="stats"><article>👥<b id="stM">0</b><small data-i18n="members">Miembros</small></article><article>🏆<b id="stW">0</b><small data-i18n="victories">Victorias</small></article><article>🎯<b id="stK">0.00</b><small>K/D</small></article><article>🎖️<b id="stXP">0</b><small>XP Clan</small></article></div><div class="grid3"><article><h3>Founder 20</h3><p data-i18n="founderText">Primeros 20 aceptados reciben insignia exclusiva y bonus XP.</p></article><article><h3 data-i18n="seasonTitle">Temporada 1</h3><p data-i18n="seasonText">XP, misiones, rachas, torneos y reputación SHDW.</p></article><article><h3 data-i18n="fairTitle">Juego Limpio</h3><p data-i18n="fairText">Tolerancia cero a hacks, Cronus, XIM y ventajas injustas.</p></article></div></section>
 <section id="profiles" class="tab"><article><h2 data-i18n="profilesTitle">Perfiles</h2><form id="profileForm" class="form"><input name="gamertag" placeholder="Gamertag" required><input name="email" type="email" placeholder="Correo"><input name="photo" placeholder="URL foto"><input name="discord" placeholder="Discord"><input name="region" placeholder="Región"><input name="role" placeholder="Rol"><input name="kd" placeholder="K/D"><input name="wins" placeholder="Victorias"><textarea name="bio" placeholder="Biografía"></textarea><button class="red" data-i18n="saveProfile">Guardar perfil</button><button type="button" id="daily" data-i18n="dailyCheck">🎁 Check-in diario</button></form></article><div id="profilesList" class="cards"></div></section>
-<section id="streamers" class="tab"><article class="streamerHero"><h2>🎥 Streamers SHDW</h2><p>Programa beta para creadores pequeños y medianos. No importa si tienes 10, 100 o 1000 seguidores: lo importante es crecer juntos.</p><div class="streamerBenefits"><span>📢 Promoción en redes SHDW</span><span>🎖️ Rol exclusivo en Discord</span><span>🏆 Torneos de creadores</span><span>🎁 Recompensas especiales</span><span>📱 Aparición dentro de la app</span><span>⭐ Streamer Oficial SHDW</span></div></article><article><h2>Aplicar como Streamer SHDW</h2><form id="streamerForm" class="form"><input name="name" placeholder="Nombre / Gamertag" required><input name="email" type="email" placeholder="Correo de contacto"><input name="channel" placeholder="Link de Twitch, TikTok o YouTube" required><input name="platform" placeholder="Plataforma principal"><input name="followers" placeholder="Seguidores aproximados"><input name="game" placeholder="Juego principal"><input name="region" placeholder="Región / País"><input name="photo" placeholder="URL de foto o logo"><textarea name="reason" placeholder="¿Por qué quieres ser Streamer SHDW?"></textarea><button class="red" type="submit">Enviar solicitud streamer</button><p id="streamerMsg" class="success hide">Solicitud enviada. ScorpionBz la revisará.</p></form></article><article><h2>👑 Streamer de la semana</h2><div id="featuredStreamer" class="featuredStreamer"></div></article><article><h2>Streamers oficiales</h2><div id="streamersList" class="streamersGrid"></div></article></section><section id="rank" class="tab"><article><h2 data-i18n="rankingTitle">Ranking Global</h2><div id="rankList" class="rows"></div></article></section>
+<section id="streamers" class="tab"><article class="streamerHero"><h2>🎥 Streamers SHDW</h2><p>Programa beta para creadores pequeños y medianos. No importa si tienes 10, 100 o 1000 seguidores: lo importante es crecer juntos.</p><div class="streamerBenefits"><span>📢 Promoción en redes SHDW</span><span>🎖️ Rol exclusivo en Discord</span><span>🏆 Torneos de creadores</span><span>🎁 Recompensas especiales</span><span>📱 Aparición dentro de la app</span><span>⭐ Streamer Oficial SHDW</span></div></article><article>
+  <h2>🤖 IA SHDW Creator</h2>
+  <form id="aiStreamerForm" class="form">
+    <input name="game" placeholder="Juego: Warzone, FC 26..." required>
+    <select name="type">
+      <option value="titulo">Título para stream</option>
+      <option value="hashtags">Hashtags</option>
+      <option value="youtube">Descripción YouTube</option>
+      <option value="ideas">Ideas de videos</option>
+      <option value="sorteo">Idea de sorteo</option>
+    </select>
+    <button class="red" type="submit">Generar con IA</button>
+  </form>
+  <div id="aiResult" class="card"></div>
+</article>
+
+<article>
+  <h2>🎬 Subir clip streamer</h2>
+  <form id="clipForm" class="form">
+    <input name="name" placeholder="Tu nombre / Gamertag" required>
+    <input name="title" placeholder="Título del clip" required>
+    <input name="video" placeholder="Link del video" required>
+    <input name="game" placeholder="Juego">
+    <button class="red" type="submit">Subir clip</button>
+  </form>
+</article>
+
+<article>
+  <h2>🔥 Clips de la comunidad</h2>
+  <div id="clipsList" class="streamersGrid"></div>
+</article>
+
+<article>
+  <h2>🏆 Streamer más apoyado</h2>
+  <div id="topClipStreamer" class="featuredStreamer"></div>
+</article><article><h2>Aplicar como Streamer SHDW</h2><form id="streamerForm" class="form"><input name="name" placeholder="Nombre / Gamertag" required><input name="email" type="email" placeholder="Correo de contacto"><input name="channel" placeholder="Link de Twitch, TikTok o YouTube" required><input name="platform" placeholder="Plataforma principal"><input name="followers" placeholder="Seguidores aproximados"><input name="game" placeholder="Juego principal"><input name="region" placeholder="Región / País"><input name="photo" placeholder="URL de foto o logo"><textarea name="reason" placeholder="¿Por qué quieres ser Streamer SHDW?"></textarea><button class="red" type="submit">Enviar solicitud streamer</button><p id="streamerMsg" class="success hide">Solicitud enviada. ScorpionBz la revisará.</p></form></article><article><h2>👑 Streamer de la semana</h2><div id="featuredStreamer" class="featuredStreamer"></div></article><article><h2>Streamers oficiales</h2><div id="streamersList" class="streamersGrid"></div></article></section><section id="rank" class="tab"><article><h2 data-i18n="rankingTitle">Ranking Global</h2><div id="rankList" class="rows"></div></article></section>
 <section id="xp" class="tab"><article><h2 data-i18n="xpTitle">Sistema XP</h2><div class="grid4"><b>+25 XP<br><small>Check-in</small></b><b>+500 XP<br><small data-i18n="acceptedRecruit">Recluta aceptado</small></b><b>+1500 XP<br><small data-i18n="wonTournament">Torneo ganado</small></b><b>+2000 XP<br><small>MVP</small></b></div><div id="xpList" class="rows"></div></article></section>
 
 <section id="levels" class="tab"><article><h2>🎖️ Niveles y Recompensas</h2>
