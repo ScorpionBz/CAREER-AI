@@ -310,3 +310,152 @@ window.approveStreamer=async id=>{const st=streamerRequestsData[id];if(!st)retur
 window.rejectStreamer=async id=>await remove(ref(db,"streamerRequests/"+id));
 window.addStreamerXP=async(id,amount,reason)=>{const st=streamers[id];if(!st)return;const newXP=(Number(st.streamerXP)||0)+Number(amount);await update(ref(db,"streamers/"+id),{streamerXP:newXP});await push(ref(db,"notifications"),{title:"XP Streamer",body:`${st.name} ganó +${amount} XP por ${reason}.`,createdAt:new Date().toISOString()});};
 window.deleteStreamer=async(id,name)=>{if(!confirm(`¿Eliminar a ${name} de Streamers SHDW?`))return;await remove(ref(db,"streamers/"+id));};
+// SHDW 4.4 Clips + corazones + IA para streamers
+let streamerClips = {};
+
+onValue(ref(db,"streamerClips"), s => {
+  streamerClips = s.val() || {};
+  renderStreamerClips();
+});
+
+const clipForm = document.getElementById("clipForm");
+
+if (clipForm) {
+  clipForm.onsubmit = async e => {
+    e.preventDefault();
+
+    const clip = Object.fromEntries(new FormData(e.target).entries());
+    clip.hearts = 0;
+    clip.createdAt = new Date().toISOString();
+
+    await push(ref(db,"streamerClips"), clip);
+
+    await push(ref(db,"notifications"), {
+      title: "Nuevo clip streamer",
+      body: `${clip.name} subió un nuevo clip: ${clip.title}`,
+      createdAt: new Date().toISOString()
+    });
+
+    e.target.reset();
+    alert("Clip subido correctamente.");
+  };
+}
+
+function renderStreamerClips() {
+  const box = document.getElementById("clipsList");
+  const topBox = document.getElementById("topClipStreamer");
+
+  const clips = arr(streamerClips).sort((a,b) => (Number(b.hearts)||0) - (Number(a.hearts)||0));
+
+  if (box) {
+    box.innerHTML = clips.length ? clips.map(c => `
+      <div class="streamerCard searchable">
+        <h3>🎬 ${c.title}</h3>
+        <p><b>${c.name}</b><br>${c.game || "Gaming"}</p>
+        <a href="${c.video}" target="_blank">Ver clip</a>
+        <br><br>
+        <button class="red" onclick="heartClip('${c.id}')">
+          ❤️ ${c.hearts || 0}
+        </button>
+      </div>
+    `).join("") : "<p>Aún no hay clips. Sé el primero en subir uno.</p>";
+  }
+
+  if (topBox) {
+    const top = clips[0];
+
+    topBox.innerHTML = top ? `
+      <div class="streamerCard official">
+        <h3>👑 ${top.name}</h3>
+        <p>Clip más apoyado: ${top.title}</p>
+        <p>❤️ ${top.hearts || 0} corazones</p>
+        <a href="${top.video}" target="_blank">Ver clip ganador</a>
+      </div>
+    ` : "<p>Aún no hay streamer más apoyado.</p>";
+  }
+}
+
+window.heartClip = async id => {
+  const clip = streamerClips[id];
+  if (!clip) return;
+
+  const key = "heart_clip_" + id;
+
+  if (localStorage.getItem(key)) {
+    alert("Ya diste corazón a este clip.");
+    return;
+  }
+
+  localStorage.setItem(key, "yes");
+
+  const newHearts = (Number(clip.hearts) || 0) + 1;
+
+  await update(ref(db,"streamerClips/" + id), {
+    hearts: newHearts
+  });
+
+  await push(ref(db,"notifications"), {
+    title: "Nuevo corazón",
+    body: `${clip.name} recibió un corazón en su clip.`,
+    createdAt: new Date().toISOString()
+  });
+};
+
+// IA básica para streamers sin pagar API
+const aiStreamerForm = document.getElementById("aiStreamerForm");
+
+if (aiStreamerForm) {
+  aiStreamerForm.onsubmit = e => {
+    e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    const game = data.game || "Warzone";
+    const type = data.type;
+    const result = document.getElementById("aiResult");
+
+    let text = "";
+
+    if (type === "titulo") {
+      text = `
+        🔥 Directo Épico de ${game}<br>
+        🎮 Hoy toca romper la partida con la comunidad SHDW<br>
+        💀 ¿Podrán detenernos?
+      `;
+    }
+
+    if (type === "hashtags") {
+      text = `
+        #${game.replaceAll(" ","")} #ShadowOpsGlobal #SHDW #StreamerLatino #Gaming #Warzone #Twitch #TikTokGaming #ClipsGaming #ComunidadGamer
+      `;
+    }
+
+    if (type === "youtube") {
+      text = `
+        Bienvenidos a un nuevo video de ${game}. En este directo jugamos con la comunidad de Shadow Ops Global, buscamos buenas partidas, clips épicos y nuevos miembros para el clan. No olvides apoyar con tu like y seguirme para más contenido.
+      `;
+    }
+
+    if (type === "ideas") {
+      text = `
+        1. Reto de ganar una partida con suscriptores.<br>
+        2. Mejores clips de la semana.<br>
+        3. Jugando con miembros nuevos de SHDW.<br>
+        4. Torneo interno entre streamers.<br>
+        5. Reaccionando a clips de la comunidad.
+      `;
+    }
+
+    if (type === "sorteo") {
+      text = `
+        🎁 Sorteo SHDW: participa siguiendo el canal, dejando corazón en el clip y compartiendo el directo. Premio sugerido: pase de batalla, rol VIP o entrada a torneo exclusivo.
+      `;
+    }
+
+    if (result) {
+      result.innerHTML = `
+        <h3>🤖 Resultado IA SHDW</h3>
+        <p>${text}</p>
+      `;
+    }
+  };
+}
