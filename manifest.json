@@ -1,22 +1,224 @@
-{
-  "name": "Shadow Ops Global",
-  "short_name": "SHDW",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#050505",
-  "theme_color": "#050505",
-  "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "description": "Gaming Social Network, Streamers & Clans"
-}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Career AI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<header>
+
+<div class="logo">
+
+⚽ CAREER AI
+
+</div>
+
+<nav>
+
+<a href="#">Inicio</a>
+
+<a href="#">Mi Carrera</a>
+
+<a href="#">Comunidad</a>
+
+<a href="#">Noticias</a>
+
+<a href="#">Ajustes</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>
+
+TU HISTORIA COMIENZA AQUÍ
+
+</h1>
+
+<p>
+
+Cada decisión cambiará el destino de tu club.
+
+El presidente recordará tus acciones.
+
+La prensa reaccionará.
+
+Los jugadores hablarán.
+
+La afición juzgará.
+
+</p>
+
+<div class="buttons">
+
+<button id="newCareer">
+
+🆕 NUEVA CARRERA
+
+</button>
+
+<button>
+
+📂 CONTINUAR
+
+</button>
+
+</div>
+
+</section>
+
+<section class="games">
+
+<h2>
+
+Selecciona tu juego
+
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/53/53283.png">
+
+<h3>FC 25</h3>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/53/53283.png">
+
+<h3>FC 26</h3>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="features">
+
+<h2>
+
+¿Qué encontrarás?
+
+</h2>
+
+<div class="grid">
+
+<div class="feature">
+
+👔
+
+<h3>Presidentes Reales</h3>
+
+<p>
+
+Cada club tendrá su propio presidente.
+
+</p>
+
+</div>
+
+<div class="feature">
+
+📰
+
+<h3>Noticias Dinámicas</h3>
+
+<p>
+
+La prensa reaccionará a tus decisiones.
+
+</p>
+
+</div>
+
+<div class="feature">
+
+💰
+
+<h3>Mercado</h3>
+
+<p>
+
+Compra y vende jugadores.
+
+</p>
+
+</div>
+
+<div class="feature">
+
+🤖
+
+<h3>IA Inteligente</h3>
+
+<p>
+
+La IA recordará todo.
+
+</p>
+
+</div>
+
+<div class="feature">
+
+🎲
+
+<h3>Eventos Aleatorios</h3>
+
+<p>
+
+Cada carrera será diferente.
+
+</p>
+
+</div>
+
+<div class="feature">
+
+🏆
+
+<h3>Objetivos</h3>
+
+<p>
+
+La directiva te exigirá resultados.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+Career AI © 2026
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
