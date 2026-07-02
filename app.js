@@ -1,104 +1,160 @@
-// ========================================
-// CAREER AI v0.1
-// Sistema Principal
-// ========================================
+// ======================================
+// CAREER AI - DATA ENGINE v0.1
+// ======================================
 
-console.log("Career AI iniciado");
+console.log("⚽ Career AI cargando sistema de datos...");
 
-// Esperar a que cargue toda la página
+let selectedGame = null;
+let selectedLeague = null;
+let selectedClub = null;
+
+// Botón Nueva Carrera
 document.addEventListener("DOMContentLoaded", () => {
 
-    const newCareerBtn = document.getElementById("newCareer");
+    const btn = document.getElementById("newCareer");
 
-    if(newCareerBtn){
-
-        newCareerBtn.addEventListener("click", abrirNuevaCarrera);
-
+    if (btn) {
+        btn.addEventListener("click", openGameSelect);
     }
 
 });
 
-// ================================
-// NUEVA CARRERA
-// ================================
+// ======================================
+// 1. SELECCIONAR JUEGO
+// ======================================
 
-function abrirNuevaCarrera(){
+function openGameSelect() {
 
-    const modal = document.createElement("div");
-
-    modal.id = "careerModal";
-
-    modal.innerHTML = `
-
-    <div class="career-box">
-
-        <h2>⚽ NUEVA CARRERA</h2>
-
+    createModal(`
+        <h2>⚽ Nueva Carrera</h2>
         <p>Selecciona tu juego</p>
 
-        <div class="games-select">
+        <button onclick="selectGame('FC25')">FC 25</button>
+        <button onclick="selectGame('FC26')">FC 26</button>
 
-            <button class="game-btn" data-game="FC25">
-                EA SPORTS FC 25
-            </button>
+        <br><br>
+        <button onclick="closeModal()">Cerrar</button>
+    `);
 
-            <button class="game-btn" data-game="FC26">
-                EA SPORTS FC 26
-            </button>
+}
 
-        </div>
+function selectGame(game) {
 
-        <button id="closeModal">
-            Cancelar
-        </button>
+    selectedGame = game;
+    console.log("Juego seleccionado:", game);
 
-    </div>
+    closeModal();
+    loadLeagues();
 
-    `;
+}
 
-    document.body.appendChild(modal);
+// ======================================
+// 2. CARGAR LIGAS DESDE JSON
+// ======================================
 
-    document.querySelectorAll(".game-btn").forEach(btn=>{
+async function loadLeagues() {
 
-        btn.addEventListener("click",()=>{
+    const res = await fetch("./data/leagues.json");
+    const leagues = await res.json();
 
-            const game = btn.dataset.game;
+    let html = `<h2>🌍 Selecciona una Liga</h2>`;
 
-            localStorage.setItem("careerGame",game);
-
-            alert("Has seleccionado "+game);
-
-            cerrarModal();
-
-            // Próximo paso
-            mostrarSeleccionLiga();
-
-        });
-
+    leagues.forEach(l => {
+        html += `<button onclick="selectLeague('${l.name}')">${l.name}</button><br>`;
     });
 
-    document.getElementById("closeModal").onclick=cerrarModal;
+    createModal(html);
 
 }
 
-function cerrarModal(){
+function selectLeague(league) {
 
-    const modal=document.getElementById("careerModal");
+    selectedLeague = league;
+    console.log("Liga:", league);
 
-    if(modal){
-
-        modal.remove();
-
-    }
+    closeModal();
+    loadClubs();
 
 }
 
-// =================================
-// SIGUIENTE PASO
-// =================================
+// ======================================
+// 3. CARGAR CLUBS DESDE JSON
+// ======================================
 
-function mostrarSeleccionLiga(){
+async function loadClubs() {
 
-    alert("En la siguiente versión aparecerán todas las ligas de FC.");
+    const res = await fetch("./data/clubs.json");
+    const clubs = await res.json();
+
+    let html = `<h2>🛡️ Selecciona un Club</h2>`;
+
+    clubs
+    .filter(c => c.league === selectedLeague)
+    .forEach(c => {
+        html += `<button onclick="selectClub('${c.name}')">${c.name}</button><br>`;
+    });
+
+    createModal(html);
+
+}
+
+function selectClub(club) {
+
+    selectedClub = club;
+
+    console.log("Club:", club);
+
+    closeModal();
+
+    startCareer();
+
+}
+
+// ======================================
+// 4. INICIAR CARRERA
+// ======================================
+
+function startCareer() {
+
+    createModal(`
+        <h2>👔 Carrera Iniciada</h2>
+
+        <p>Juego: ${selectedGame}</p>
+        <p>Liga: ${selectedLeague}</p>
+        <p>Club: ${selectedClub}</p>
+
+        <br>
+        <button onclick="closeModal()">Continuar</button>
+    `);
+
+}
+
+// ======================================
+// MODAL SYSTEM
+// ======================================
+
+function createModal(content) {
+
+    closeModal();
+
+    const div = document.createElement("div");
+
+    div.id = "modal";
+
+    div.innerHTML = `
+        <div class="modal-box">
+            ${content}
+        </div>
+    `;
+
+    document.body.appendChild(div);
+
+}
+
+function closeModal() {
+
+    const m = document.getElementById("modal");
+
+    if (m) m.remove();
 
 }
