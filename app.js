@@ -225,3 +225,113 @@ function testLoss(){
 console.log(presidentReaction("loss"));
 saveGame();
 }
+/*====================================
+    PARTIDOS IA - CAREER AI
+====================================*/
+
+const MATCH_FIXTURES = [
+"Real Madrid vs Barcelona",
+"Manchester City vs Liverpool",
+"PSG vs Bayern Munich",
+"Juventus vs AC Milan",
+"Arsenal vs Chelsea",
+"Inter Miami vs LA Galaxy"
+];
+
+let currentMatch = null;
+
+/*==============================
+    GENERAR PARTIDO
+==============================*/
+
+function generateMatch(){
+
+currentMatch = MATCH_FIXTURES[
+Math.floor(Math.random() * MATCH_FIXTURES.length)
+];
+
+return currentMatch;
+
+}
+
+/*==============================
+    PROBABILIDAD DE VICTORIA
+==============================*/
+
+function calculateWinChance(){
+
+let base = 50;
+
+// presupuesto influye
+if(CareerAI.budget > 150000000){
+base += 15;
+}
+if(CareerAI.budget < 80000000){
+base -= 15;
+}
+
+// moral influye
+base += (CareerAI.morale - 50) / 5;
+
+// confianza directiva
+base += (CareerAI.boardTrust - 50) / 10;
+
+if(base > 85) base = 85;
+if(base < 10) base = 10;
+
+return base;
+
+}
+
+/*==============================
+    SIMULAR PARTIDO
+==============================*/
+
+function playMatch(){
+
+let winChance = calculateWinChance();
+
+let random = Math.random() * 100;
+
+let result;
+
+if(random < winChance){
+result = "win";
+} else if(random < winChance + 20){
+result = "draw";
+} else {
+result = "loss";
+}
+
+// reacción del presidente
+let reaction = presidentReaction(result);
+
+// actualizar moral
+if(result === "win") CareerAI.morale += 5;
+if(result === "loss") CareerAI.morale -= 7;
+
+// guardar
+saveGame();
+
+return {
+match: currentMatch,
+result: result,
+reaction: reaction,
+winChance: winChance.toFixed(1)
+};
+
+}
+
+/*==============================
+    NEXT MATCH SYSTEM
+==============================*/
+
+function nextMatch(){
+
+let match = generateMatch();
+
+console.log("📅 Próximo partido:", match);
+
+return match;
+
+}
