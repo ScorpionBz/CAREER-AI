@@ -820,3 +820,49 @@ color:#00ff88;
 /*=========================================
  CAREER AI 2.0
 =========================================*/
+.team-select{
+    position:fixed;
+    inset:0;
+    background:rgba(5,8,13,.98);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    text-align:center;
+    padding:40px;
+}
+
+.team-select h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.team-select p{
+    opacity:.7;
+    margin-bottom:40px;
+}
+
+.teams-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    width:100%;
+    max-width:600px;
+}
+
+.team-btn{
+    padding:20px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:700;
+    background:linear-gradient(135deg,#1b75ff,#14d45c);
+    color:white;
+    transition:.3s;
+}
+
+.team-btn:hover{
+    transform:scale(1.05);
+}
