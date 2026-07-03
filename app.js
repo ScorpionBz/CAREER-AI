@@ -1,160 +1,221 @@
-// ======================================
-// CAREER AI - DATA ENGINE v0.1
-// ======================================
+/*====================================
+    CAREER AI 2.0
+    APP.JS
+====================================*/
 
-console.log("⚽ Career AI cargando sistema de datos...");
+const CareerAI = {
 
-let selectedGame = null;
-let selectedLeague = null;
-let selectedClub = null;
+    version: "2.0 Beta",
 
-// Botón Nueva Carrera
-document.addEventListener("DOMContentLoaded", () => {
+    presidentTrust: 86,
 
-    const btn = document.getElementById("newCareer");
+    lockerRoom: 74,
 
-    if (btn) {
-        btn.addEventListener("click", openGameSelect);
-    }
+    fans: 91,
+
+    budget: 85000000,
+
+    objective: "Clasificar a Champions League",
+
+    nextMatch: "Real Madrid vs Barcelona",
+
+    morale: "Alta"
+
+};
+
+/*====================================
+    MENSAJES DEL PRESIDENTE
+====================================*/
+
+const presidentMessages = [
+
+"Buenos días entrenador. Confío plenamente en tu trabajo.",
+
+"Necesitamos terminar entre los cuatro primeros.",
+
+"La afición espera mejores resultados.",
+
+"Tenemos presupuesto para un gran fichaje.",
+
+"Evita conflictos dentro del vestuario.",
+
+"No vendas a nuestras estrellas.",
+
+"Los patrocinadores están muy satisfechos.",
+
+"Hay rumores sobre tu futuro."
+
+];
+
+/*====================================
+    NOTICIAS
+====================================*/
+
+const news = [
+
+"La afición está muy ilusionada con el proyecto.",
+
+"Tu delantero ha despertado interés en Inglaterra.",
+
+"Un juvenil destaca en los entrenamientos.",
+
+"El presidente prepara nuevas inversiones.",
+
+"Los aficionados llenarán el estadio.",
+
+"Se acerca el mercado de fichajes.",
+
+"Un jugador solicita una mejora salarial.",
+
+"La prensa elogia tu estilo de juego.",
+
+"Varios clubes preguntan por tu capitán."
+
+];
+
+/*====================================
+    CARGAR MENSAJE
+====================================*/
+
+function loadPresidentMessage(){
+
+const message = presidentMessages[
+Math.floor(Math.random()*presidentMessages.length)
+];
+
+document.getElementById("presidentMessage").textContent = message;
+
+}
+
+/*====================================
+    CARGAR NOTICIAS
+====================================*/
+
+function loadNews(){
+
+const list = document.getElementById("newsList");
+
+list.innerHTML="";
+
+let randomNews=[...news]
+.sort(()=>0.5-Math.random())
+.slice(0,3);
+
+randomNews.forEach(item=>{
+
+const li=document.createElement("li");
+
+li.innerHTML="📰 "+item;
+
+list.appendChild(li);
 
 });
 
-// ======================================
-// 1. SELECCIONAR JUEGO
-// ======================================
+}
 
-function openGameSelect() {
+/*====================================
+    ACTUALIZAR ESTADOS
+====================================*/
 
-    createModal(`
-        <h2>⚽ Nueva Carrera</h2>
-        <p>Selecciona tu juego</p>
+function updateStatus(){
 
-        <button onclick="selectGame('FC25')">FC 25</button>
-        <button onclick="selectGame('FC26')">FC 26</button>
+document.getElementById("presidentTrust").textContent =
+CareerAI.presidentTrust+"%";
 
-        <br><br>
-        <button onclick="closeModal()">Cerrar</button>
-    `);
+document.getElementById("lockerRoom").textContent =
+CareerAI.lockerRoom+"%";
+
+document.getElementById("fansTrust").textContent =
+CareerAI.fans+"%";
 
 }
 
-function selectGame(game) {
+/*====================================
+    BOTÓN PRESIDENTE
+====================================*/
 
-    selectedGame = game;
-    console.log("Juego seleccionado:", game);
+document
+.getElementById("openPresident")
+.addEventListener("click",()=>{
 
-    closeModal();
-    loadLeagues();
+loadPresidentMessage();
 
-}
+alert(
+"📞 El presidente quiere hablar contigo.\n\nRevisa sus nuevas instrucciones."
+);
 
-// ======================================
-// 2. CARGAR LIGAS DESDE JSON
-// ======================================
+});
 
-async function loadLeagues() {
+/*====================================
+    GUARDADO
+====================================*/
 
-    const res = await fetch("./data/leagues.json");
-    const leagues = await res.json();
+function saveCareer(){
 
-    let html = `<h2>🌍 Selecciona una Liga</h2>`;
+localStorage.setItem(
 
-    leagues.forEach(l => {
-        html += `<button onclick="selectLeague('${l.name}')">${l.name}</button><br>`;
-    });
+"career-ai",
 
-    createModal(html);
+JSON.stringify(CareerAI)
 
-}
-
-function selectLeague(league) {
-
-    selectedLeague = league;
-    console.log("Liga:", league);
-
-    closeModal();
-    loadClubs();
+);
 
 }
 
-// ======================================
-// 3. CARGAR CLUBS DESDE JSON
-// ======================================
+/*====================================
+    CARGAR
+====================================*/
 
-async function loadClubs() {
+function loadCareer(){
 
-    const res = await fetch("./data/clubs.json");
-    const clubs = await res.json();
+const data=
 
-    let html = `<h2>🛡️ Selecciona un Club</h2>`;
+localStorage.getItem("career-ai");
 
-    clubs
-    .filter(c => c.league === selectedLeague)
-    .forEach(c => {
-        html += `<button onclick="selectClub('${c.name}')">${c.name}</button><br>`;
-    });
+if(!data) return;
 
-    createModal(html);
+Object.assign(
 
-}
+CareerAI,
 
-function selectClub(club) {
+JSON.parse(data)
 
-    selectedClub = club;
-
-    console.log("Club:", club);
-
-    closeModal();
-
-    startCareer();
+);
 
 }
 
-// ======================================
-// 4. INICIAR CARRERA
-// ======================================
+/*====================================
+    INICIO
+====================================*/
 
-function startCareer() {
+window.onload=()=>{
 
-    createModal(`
-        <h2>👔 Carrera Iniciada</h2>
+loadCareer();
 
-        <p>Juego: ${selectedGame}</p>
-        <p>Liga: ${selectedLeague}</p>
-        <p>Club: ${selectedClub}</p>
+updateStatus();
 
-        <br>
-        <button onclick="closeModal()">Continuar</button>
-    `);
+loadPresidentMessage();
 
-}
+loadNews();
 
-// ======================================
-// MODAL SYSTEM
-// ======================================
+saveCareer();
 
-function createModal(content) {
+console.log(
 
-    closeModal();
+"Career AI "+CareerAI.version+" iniciado."
 
-    const div = document.createElement("div");
+);
 
-    div.id = "modal";
+};
 
-    div.innerHTML = `
-        <div class="modal-box">
-            ${content}
-        </div>
-    `;
+/*====================================
+    ACTUALIZAR CADA 30 SEGUNDOS
+====================================*/
 
-    document.body.appendChild(div);
+setInterval(()=>{
 
-}
+loadNews();
 
-function closeModal() {
+loadPresidentMessage();
 
-    const m = document.getElementById("modal");
-
-    if (m) m.remove();
-
-}
+},30000);
