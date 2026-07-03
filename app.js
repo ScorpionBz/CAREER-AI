@@ -219,3 +219,44 @@ loadNews();
 loadPresidentMessage();
 
 },30000);
+//====================================
+// SELECCIÓN DE EQUIPO
+//====================================
+
+function initTeamSelect(){
+
+const screen = document.getElementById("teamSelectScreen");
+
+const savedTeam = localStorage.getItem("career-team");
+
+if(savedTeam){
+
+screen.style.display = "none";
+
+CareerAI.team = savedTeam;
+
+return;
+
+}
+
+document.querySelectorAll(".team-btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+const team = btn.dataset.team;
+
+CareerAI.team = team;
+
+localStorage.setItem("career-team",team);
+
+screen.style.display = "none";
+
+alert("Has elegido: " + team);
+
+});
+
+});
+
+}
+
+initTeamSelect();
