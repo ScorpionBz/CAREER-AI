@@ -335,3 +335,19 @@ console.log("📅 Próximo partido:", match);
 return match;
 
 }
+function handleMatch(){
+
+let match = nextMatch();
+
+let result = playMatch();
+
+alert(
+"⚽ " + match +
+"\n\nResultado: " + result.result.toUpperCase() +
+"\nProbabilidad: " + result.winChance + "%" +
+"\n\n" + result.reaction
+);
+
+console.log(result);
+
+}
