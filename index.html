@@ -6,20 +6,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Career AI 3.0</title>
+<title>Career AI 3.1</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
-
 
 <body>
 
 
 <div id="setup" class="screen">
 
-
-<h1>⚽ CAREER AI 3.0</h1>
+<h1>⚽ CAREER AI 3.1</h1>
 
 <p>Crea tu historia como entrenador</p>
 
@@ -32,9 +30,12 @@
 </button>
 
 
+<button onclick="continueCareer()">
+💾 CONTINUAR CARRERA
+</button>
+
+
 </div>
-
-
 
 
 
@@ -56,39 +57,30 @@
 
 
 <div class="card">
-
 <h2>👔 Presidente</h2>
-
 <p id="president"></p>
-
 </div>
 
 
-
-
 <div class="card">
-
 <h2>💰 Presupuesto</h2>
-
 <p id="budget"></p>
-
 </div>
-
-
 
 
 <div class="card">
-
 <h2>📊 Confianza</h2>
-
 <p id="trust"></p>
+</div>
 
+
+<div class="card">
+<h2>🎯 Objetivo</h2>
+<p id="objective"></p>
 </div>
 
 
 </div>
-
-
 
 
 
@@ -96,9 +88,7 @@
 
 <h2>📰 Noticias del club</h2>
 
-
 <div id="events"></div>
-
 
 
 <button onclick="newEvent()">
@@ -115,7 +105,6 @@
 
 
 <script src="database.js"></script>
-
 <script src="app.js"></script>
 
 
