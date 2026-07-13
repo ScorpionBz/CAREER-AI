@@ -1,117 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Career AI 3.0</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div id="setup" class="screen">
+<div id="setup">
 
 <h1>⚽ CAREER AI 3.0</h1>
 
-<p>Tu carrera. Tus decisiones. Tu historia.</p>
+<p>Elige tu club</p>
 
-<select id="gameSelect">
-<option value="FC26">FC 26</option>
-<option value="FC25">FC 25</option>
+<select id="clubSelect">
+<option>Real Madrid</option>
+<option>FC Barcelona</option>
+<option>Manchester City</option>
 </select>
 
-
-<select id="clubSelect"></select>
-
-
-<button onclick="startCareer()">
+<button id="startBtn">
 🚀 COMENZAR CARRERA
 </button>
 
 </div>
 
 
-
 <div id="career" class="hidden">
 
+<h1 id="clubName"></h1>
 
-<header>
-
-<h1 id="clubName">
-</h1>
-
-<p id="season">
-Temporada 2026/27
-</p>
-
-</header>
-
-
-
-<section class="cards">
-
-
-<div class="card">
-
-<h3>👔 Presidente</h3>
-
+<h2>👔 Presidente</h2>
 <p id="president"></p>
 
-</div>
-
-
-<div class="card">
-
-<h3>💰 Presupuesto</h3>
-
+<h2>💰 Presupuesto</h2>
 <p id="budget"></p>
 
-</div>
 
-
-<div class="card">
-
-<h3>📊 Confianza</h3>
-
-<p id="trust"></p>
-
-</div>
-
-
-</section>
-
-
-
-<section class="messages">
-
-<h2>📩 Noticias del club</h2>
+<button id="eventBtn">
+🎲 Generar evento
+</button>
 
 <div id="events"></div>
 
-</section>
+</div>
 
 
-
-<button onclick="generateEvent()">
-🎲 Nuevo evento
-</button>
-
-
-</body>
-</html>
-
-<script src="database.js"></script>
-<script src="database_fc25.js"></script>
-<script src="database_fc26.js"></script>
-<script src="presidents.js"></script>
-<script src="storage.js"></script>
-<script src="players_engine.js"></script>
-<script src="president_engine.js"></script>
-<script src="market_engine.js"></script>
-<script src="media_engine.js"></script>
 <script src="app.js"></script>
 
 </body>
