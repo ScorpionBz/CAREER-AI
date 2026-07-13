@@ -1,1 +1,33 @@
-[]
+[]const LEAGUES = {
+
+"LaLiga": [
+"Real Madrid",
+"FC Barcelona",
+"Atletico Madrid",
+"Sevilla"
+],
+
+"Premier League":[
+"Manchester City",
+"Liverpool",
+"Manchester United",
+"Arsenal",
+"Chelsea"
+],
+
+"Bundesliga":[
+"Bayern Munich",
+"Borussia Dortmund"
+],
+
+"Ligue 1":[
+"PSG"
+],
+
+"Serie A":[
+"Juventus",
+"Inter Milan",
+"AC Milan"
+]
+
+};
