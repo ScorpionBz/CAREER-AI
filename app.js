@@ -27,13 +27,25 @@ Career={
 
 club:club,
 
+league:getLeagueByClub(club),
+
 president:data.president,
 
 budget:data.budget,
 
 objective:data.objective,
 
-trust:75
+trust:75,
+
+matchday:1,
+
+points:0,
+
+wins:0,
+
+draws:0,
+
+losses:0
 
 };
 
