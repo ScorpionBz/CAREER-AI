@@ -5,10 +5,10 @@ const select = document.getElementById("clubSelect");
 
 Object.keys(CLUBS).forEach(club => {
 
-    let option = document.createElement("option");
+    let option=document.createElement("option");
 
-    option.value = club;
-    option.textContent = club;
+    option.value=club;
+    option.textContent=club;
 
     select.appendChild(option);
 
@@ -18,40 +18,100 @@ Object.keys(CLUBS).forEach(club => {
 
 function startCareer(){
 
-    let club = select.value;
+let club=select.value;
 
-    let data = CLUBS[club];
-
-
-    Career = {
-
-        club: club,
-        president: data.president,
-        budget: data.budget,
-        trust: 75
-
-    };
+let data=CLUBS[club];
 
 
-    document.getElementById("setup").style.display="none";
+Career={
 
-    document.getElementById("career").classList.remove("hidden");
+club:club,
 
+president:data.president,
 
-    document.getElementById("clubName").textContent =
-    Career.club;
+budget:data.budget,
 
+objective:data.objective,
 
-    document.getElementById("president").textContent =
-    Career.president;
+trust:75
 
-
-    document.getElementById("budget").textContent =
-    "€" + Career.budget.toLocaleString();
+};
 
 
-    document.getElementById("trust").textContent =
-    Career.trust + "/100";
+saveCareer();
+
+showCareer();
+
+
+}
+
+
+
+
+function showCareer(){
+
+
+document.getElementById("setup").style.display="none";
+
+document.getElementById("career")
+.classList.remove("hidden");
+
+
+
+document.getElementById("clubName")
+.textContent=Career.club;
+
+
+document.getElementById("president")
+.textContent=Career.president;
+
+
+document.getElementById("budget")
+.textContent="€"+Career.budget.toLocaleString();
+
+
+document.getElementById("trust")
+.textContent=Career.trust+"/100";
+
+
+document.getElementById("objective")
+.textContent=Career.objective;
+
+
+}
+
+
+
+function saveCareer(){
+
+localStorage.setItem(
+"careerAI",
+JSON.stringify(Career)
+);
+
+}
+
+
+
+function continueCareer(){
+
+
+let saved=
+localStorage.getItem("careerAI");
+
+
+if(saved){
+
+Career=JSON.parse(saved);
+
+showCareer();
+
+
+}else{
+
+alert("No existe una carrera guardada");
+
+}
 
 
 }
@@ -62,56 +122,85 @@ function startCareer(){
 function newEvent(){
 
 
-    console.log("Generando evento...");
+const events=[
 
 
-    const events = [
-
-        "👀 El delantero estrella está molesto por no ser titular.",
-
-        "📰 La prensa cuestiona tu última decisión.",
-
-        "💰 Un club ofrece dinero por una de tus figuras.",
-
-        "🌟 Un juvenil pide minutos en el primer equipo.",
-
-        "👔 El presidente quiere hablar contigo."
-
-    ];
+{
+text:"👀 El delantero estrella está molesto por no ser titular.",
+change:-5
+},
 
 
-
-    const randomEvent =
-    events[Math.floor(Math.random()*events.length)];
-
-
-
-    const container =
-    document.getElementById("events");
+{
+text:"📰 La prensa alaba tus decisiones tácticas.",
+change:5
+},
 
 
-
-    if(!container){
-
-        alert("No existe el panel de eventos");
-
-        return;
-
-    }
+{
+text:"💰 El club recibe una oferta importante por una estrella.",
+change:0
+},
 
 
+{
+text:"🌟 Un juvenil sorprende en los entrenamientos.",
+change:3
+},
 
-    const div=document.createElement("div");
+
+{
+text:"👔 El presidente duda de tus últimos resultados.",
+change:-8
+}
 
 
-    div.className="event";
-
-
-    div.textContent=randomEvent;
+];
 
 
 
-    container.prepend(div);
+let event=
+events[Math.floor(Math.random()*events.length)];
+
+
+
+Career.trust+=event.change;
+
+
+if(Career.trust>100)
+Career.trust=100;
+
+
+if(Career.trust<0)
+Career.trust=0;
+
+
+
+saveCareer();
+
+
+
+document.getElementById("trust")
+.textContent=
+Career.trust+"/100";
+
+
+
+let div=document.createElement("div");
+
+div.className="event";
+
+div.textContent=
+event.text+
+" ("+
+(event.change>=0?"+":"")+
+event.change+
+" confianza)";
+
+
+document.getElementById("events")
+.prepend(div);
+
 
 
 }
@@ -120,5 +209,6 @@ function newEvent(){
 
 window.startCareer=startCareer;
 
+window.continueCareer=continueCareer;
+
 window.newEvent=newEvent;
-// update deploy
