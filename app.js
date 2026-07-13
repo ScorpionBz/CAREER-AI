@@ -152,3 +152,5 @@ document
 
 
 }
+window.startCareer = startCareer;
+window.generateEvent = generateEvent;
