@@ -1,246 +1,147 @@
-/*====================================
-    CAREER AI 2.0 - CORE SYSTEM
-====================================*/
+let Career={};
 
-/*==============================
-    BASE DE CLUBS
-==============================*/
 
-const CLUB_DATABASE = {
-"Real Madrid": { budget: 180000000, pressure: "high", president: "Florentino Pérez", style: "galactico" },
-"FC Barcelona": { budget: 120000000, pressure: "high", president: "Joan Laporta", style: "academy" },
-"Manchester City": { budget: 200000000, pressure: "medium", president: "Sheikh Mansour", style: "winning" },
-"Manchester United": { budget: 150000000, pressure: "high", president: "INEOS Board", style: "rebuild" },
-"PSG": { budget: 170000000, pressure: "high", president: "Nasser Al-Khelaifi", style: "stars" },
-"Bayern Munich": { budget: 140000000, pressure: "medium", president: "Herbert Hainer", style: "stable" },
-"Juventus": { budget: 90000000, pressure: "medium", president: "Board", style: "rebuild" }
+
+const clubSelect=
+document.getElementById("clubSelect");
+
+
+
+Object.keys(CLUBS).forEach(club=>{
+
+let option=document.createElement("option");
+
+option.value=club;
+
+option.textContent=club;
+
+clubSelect.appendChild(option);
+
+});
+
+
+
+
+
+function startCareer(){
+
+
+let club=
+clubSelect.value;
+
+
+let data=
+CLUBS[club];
+
+
+Career={
+
+club:club,
+
+budget:data.budget,
+
+president:data.president,
+
+trust:75,
+
+events:[]
+
 };
 
-/*==============================
-    CLUB DATA
-==============================*/
 
-function getClubData(team){
-return CLUB_DATABASE[team] || {
-budget: 50000000,
-pressure: "medium",
-president: "Directiva",
-style: "normal"
-};
+
+saveCareer();
+
+
+showCareer();
+
+
 }
 
-/*==============================
-    LOAD TEAM
-==============================*/
 
-let savedTeam = localStorage.getItem("career-team") || "Real Madrid";
-let clubData = getClubData(savedTeam);
 
-/*==============================
-    CAREER STATE
-==============================*/
 
-let CareerAI = {
-team: savedTeam,
-budget: clubData.budget,
-president: clubData.president,
-pressure: clubData.pressure,
-morale: 75,
-fans: 80,
-boardTrust: 70
-};
 
-/*==============================
-    LOAD GAME (FIXED SAFE MERGE)
-==============================*/
+function showCareer(){
 
-function loadGame(){
-let data = localStorage.getItem("career-ai-data");
-if(data){
-CareerAI = { ...CareerAI, ...JSON.parse(data) };
-}
-}
 
-/*==============================
-    SAVE GAME
-==============================*/
+document.getElementById("setup")
+.classList.add("hidden");
 
-function saveGame(){
-localStorage.setItem("career-ai-data", JSON.stringify(CareerAI));
-}
 
-/*==============================
-    OBJECTIVE
-==============================*/
+document.getElementById("career")
+.classList.remove("hidden");
 
-function getObjective(){
 
-if(CareerAI.budget > 150000000) return "Ganar la liga o Champions";
-if(CareerAI.budget > 90000000) return "Clasificar a Champions";
 
-return "Evitar descenso y construir proyecto";
+document.getElementById("clubName")
+.textContent=
+Career.club;
+
+
+
+document.getElementById("president")
+.textContent=
+Career.president;
+
+
+
+document.getElementById("budget")
+.textContent=
+"€"+Career.budget.toLocaleString();
+
+
+
+document.getElementById("trust")
+.textContent=
+Career.trust+"/100";
+
+
 }
 
-/*==============================
-    PRESIDENT MESSAGE
-==============================*/
 
-function getPresidentMessage(){
-return `${CareerAI.president}:
 
-Objetivo: ${getObjective()}
-Presupuesto: €${CareerAI.budget}
 
-Exigimos resultados.`;
-}
+function generateEvent(){
 
-/*==============================
-    PRESIDENT REACTION
-==============================*/
 
-function presidentReaction(result){
+let events=[
 
-if(result === "win"){
-CareerAI.boardTrust += 5;
-CareerAI.fans += 4;
-CareerAI.budget += 2000000;
-}
 
-if(result === "draw"){
-CareerAI.boardTrust -= 2;
-CareerAI.fans -= 1;
-}
+"El delantero estrella está molesto por sus minutos.",
 
-if(result === "loss"){
-CareerAI.boardTrust -= 10;
-CareerAI.fans -= 8;
-CareerAI.budget -= 3000000;
-}
+"La directiva quiere un fichaje importante.",
 
-saveGame();
+"La prensa critica tus últimos resultados.",
 
-return result === "win"
-? "El presidente está satisfecho."
-: result === "draw"
-? "El presidente esperaba más."
-: "El presidente está muy molesto.";
-}
+"Un joven de cantera pide una oportunidad.",
 
-/*====================================
-    PARTIDOS IA
-====================================*/
+"Un club rival pregunta por tu capitán."
 
-const MATCH_FIXTURES = [
-"Real Madrid vs Barcelona",
-"Manchester City vs Liverpool",
-"PSG vs Bayern Munich",
-"Juventus vs AC Milan",
-"Arsenal vs Chelsea",
-"Inter Miami vs LA Galaxy"
 ];
 
-let currentMatch = null;
 
-/*==============================
-    MATCH GENERATOR
-==============================*/
 
-function generateMatch(){
-currentMatch = MATCH_FIXTURES[Math.floor(Math.random()*MATCH_FIXTURES.length)];
-return currentMatch;
+let text=
+events[Math.floor(Math.random()*events.length)];
+
+
+
+let box=
+document.getElementById("events");
+
+
+let div=
+document.createElement("div");
+
+
+div.className="event";
+
+div.textContent=text;
+
+
+box.prepend(div);
+
+
+
 }
-
-/*==============================
-    WIN CHANCE
-==============================*/
-
-function calculateWinChance(){
-
-let base = 50;
-
-if(CareerAI.budget > 150000000) base += 15;
-if(CareerAI.budget < 80000000) base -= 15;
-
-base += (CareerAI.morale - 50) / 5;
-base += (CareerAI.boardTrust - 50) / 10;
-
-if(base > 85) base = 85;
-if(base < 10) base = 10;
-
-return base;
-}
-
-/*==============================
-    PLAY MATCH (FIXED SAFE FLOW)
-==============================*/
-
-function playMatch(){
-
-if(!currentMatch) generateMatch();
-
-let winChance = calculateWinChance();
-let random = Math.random() * 100;
-
-let result =
-random < winChance ? "win" :
-random < winChance + 20 ? "draw" : "loss";
-
-let reaction = presidentReaction(result);
-
-// morale update
-if(result === "win") CareerAI.morale += 5;
-if(result === "loss") CareerAI.morale -= 7;
-
-saveGame();
-
-return {
-match: currentMatch,
-result,
-reaction,
-winChance: winChance.toFixed(1)
-};
-}
-
-/*==============================
-    NEXT MATCH
-==============================*/
-
-function nextMatch(){
-return generateMatch();
-}
-
-/*==============================
-    MATCH BUTTON HANDLER
-==============================*/
-
-function handleMatch(){
-
-let match = nextMatch();
-let result = playMatch();
-
-console.log(
-`⚽ ${match}
-RESULTADO: ${result.result.toUpperCase()}
-PROBABILIDAD: ${result.winChance}%
-${result.reaction}`
-);
-
-alert(
-`⚽ ${match}
-
-Resultado: ${result.result.toUpperCase()}
-Probabilidad: ${result.winChance}%
-
-${result.reaction}`
-);
-}
-
-/*==============================
-    INIT
-==============================*/
-
-window.onload = () => {
-loadGame();
-saveGame();
-console.log("Career AI iniciado:", CareerAI);
-};
