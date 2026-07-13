@@ -1,94 +1,60 @@
-let Career={};
+let Career = {};
+
+const select = document.getElementById("clubSelect");
 
 
+Object.keys(CLUBS).forEach(club => {
 
-const select =
-document.getElementById("clubSelect");
+    let option = document.createElement("option");
 
+    option.value = club;
+    option.textContent = club;
 
-
-Object.keys(CLUBS).forEach(club=>{
-
-
-let option=document.createElement("option");
-
-option.value=club;
-
-option.textContent=club;
-
-
-select.appendChild(option);
-
+    select.appendChild(option);
 
 });
 
 
 
-
-
 function startCareer(){
 
+    let club = select.value;
 
-let club=select.value;
-
-
-let data=CLUBS[club];
+    let data = CLUBS[club];
 
 
-Career={
+    Career = {
 
-club:club,
+        club: club,
+        president: data.president,
+        budget: data.budget,
+        trust: 75
 
-president:data.president,
-
-budget:data.budget,
-
-trust:75
-
-};
+    };
 
 
+    document.getElementById("setup").style.display="none";
 
-document
-.getElementById("setup")
-.style.display="none";
-
+    document.getElementById("career").classList.remove("hidden");
 
 
-document
-.getElementById("career")
-.classList.remove("hidden");
+    document.getElementById("clubName").textContent =
+    Career.club;
 
 
-
-document
-.getElementById("clubName")
-.textContent=club;
+    document.getElementById("president").textContent =
+    Career.president;
 
 
-
-document
-.getElementById("president")
-.textContent=
-Career.president;
+    document.getElementById("budget").textContent =
+    "€" + Career.budget.toLocaleString();
 
 
-
-document
-.getElementById("budget")
-.textContent=
-"€"+Career.budget.toLocaleString();
-
-
-
-document
-.getElementById("trust")
-.textContent=
-Career.trust+"/100";
+    document.getElementById("trust").textContent =
+    Career.trust + "/100";
 
 
 }
-
 
 
 
@@ -96,37 +62,62 @@ Career.trust+"/100";
 function newEvent(){
 
 
-let events=[
-
-"👀 Un delantero estrella está molesto por sus minutos.",
-
-"📢 La prensa pide explicaciones por una decisión táctica.",
-
-"💰 Un club rival pregunta por un jugador importante.",
-
-"🌟 Un joven de cantera pide una oportunidad.",
-
-"👔 El presidente quiere una reunión contigo."
-
-];
+    console.log("Generando evento...");
 
 
-let text=
-events[Math.floor(Math.random()*events.length)];
+    const events = [
+
+        "👀 El delantero estrella está molesto por no ser titular.",
+
+        "📰 La prensa cuestiona tu última decisión.",
+
+        "💰 Un club ofrece dinero por una de tus figuras.",
+
+        "🌟 Un juvenil pide minutos en el primer equipo.",
+
+        "👔 El presidente quiere hablar contigo."
+
+    ];
 
 
 
-let div=document.createElement("div");
+    const randomEvent =
+    events[Math.floor(Math.random()*events.length)];
 
 
-div.className="event";
 
-div.textContent=text;
+    const container =
+    document.getElementById("events");
 
 
-document
-.getElementById("events")
-.prepend(div);
+
+    if(!container){
+
+        alert("No existe el panel de eventos");
+
+        return;
+
+    }
+
+
+
+    const div=document.createElement("div");
+
+
+    div.className="event";
+
+
+    div.textContent=randomEvent;
+
+
+
+    container.prepend(div);
 
 
 }
+
+
+
+window.startCareer=startCareer;
+
+window.newEvent=newEvent;
