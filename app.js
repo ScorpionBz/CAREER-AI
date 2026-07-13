@@ -1,147 +1,153 @@
-let Career={};
+/* =====================================
+   CAREER AI 3.0 - APP CORE FIX
+===================================== */
 
 
-
-const clubSelect=
-document.getElementById("clubSelect");
+let Career = {};
 
 
+const clubSelect = document.getElementById("clubSelect");
 
-Object.keys(CLUBS).forEach(club=>{
 
-let option=document.createElement("option");
+// Cargar clubes
 
-option.value=club;
+Object.keys(CLUBS).forEach(club => {
 
-option.textContent=club;
+    let option = document.createElement("option");
 
-clubSelect.appendChild(option);
+    option.value = club;
+    option.textContent = club;
+
+    clubSelect.appendChild(option);
 
 });
 
 
 
-
+// Iniciar carrera
 
 function startCareer(){
 
 
-let club=
-clubSelect.value;
+    let selectedClub = clubSelect.value;
 
 
-let data=
-CLUBS[club];
+    let data = CLUBS[selectedClub];
 
 
-Career={
+    Career = {
 
-club:club,
+        club:selectedClub,
 
-budget:data.budget,
+        league:data.league,
 
-president:data.president,
+        budget:data.budget,
 
-trust:75,
+        president:data.president,
 
-events:[]
+        trust:75,
 
-};
+        events:[]
 
-
-
-saveCareer();
+    };
 
 
-showCareer();
+    localStorage.setItem(
+        "careerAI",
+        JSON.stringify(Career)
+    );
 
+
+    showCareer();
 
 }
 
 
 
-
+// Mostrar pantalla principal
 
 function showCareer(){
 
 
-document.getElementById("setup")
-.classList.add("hidden");
+    document
+    .getElementById("setup")
+    .style.display="none";
 
 
-document.getElementById("career")
-.classList.remove("hidden");
-
-
-
-document.getElementById("clubName")
-.textContent=
-Career.club;
+    document
+    .getElementById("career")
+    .classList.remove("hidden");
 
 
 
-document.getElementById("president")
-.textContent=
-Career.president;
+    document
+    .getElementById("clubName")
+    .textContent =
+    Career.club;
 
 
 
-document.getElementById("budget")
-.textContent=
-"€"+Career.budget.toLocaleString();
+    document
+    .getElementById("president")
+    .textContent =
+    Career.president;
 
 
 
-document.getElementById("trust")
-.textContent=
-Career.trust+"/100";
+    document
+    .getElementById("budget")
+    .textContent =
+    "€"+Career.budget.toLocaleString();
+
+
+
+    document
+    .getElementById("trust")
+    .textContent =
+    Career.trust+"/100";
 
 
 }
 
 
 
+// Eventos
 
 function generateEvent(){
 
 
-let events=[
+const events=[
 
+"👀 Un jugador importante está molesto por sus minutos.",
 
-"El delantero estrella está molesto por sus minutos.",
+"💰 Un club rival pregunta por una estrella.",
 
-"La directiva quiere un fichaje importante.",
+"📰 La prensa analiza tus últimas decisiones.",
 
-"La prensa critica tus últimos resultados.",
+"🌟 Un joven de cantera pide una oportunidad.",
 
-"Un joven de cantera pide una oportunidad.",
-
-"Un club rival pregunta por tu capitán."
+"👔 El presidente quiere hablar contigo."
 
 ];
 
 
-
-let text=
+let event =
 events[Math.floor(Math.random()*events.length)];
 
 
 
-let box=
-document.getElementById("events");
-
-
-let div=
+let div =
 document.createElement("div");
 
 
 div.className="event";
 
-div.textContent=text;
+div.textContent=event;
 
 
-box.prepend(div);
-
+document
+.getElementById("events")
+.prepend(div);
 
 
 }
