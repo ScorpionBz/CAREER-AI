@@ -1,56 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAREER AI TEST 999</title>
+
+<title>Career AI 3.0</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-<div id="setup">
+
+<div id="setup" class="screen">
+
 
 <h1>⚽ CAREER AI 3.0</h1>
 
-<p>Elige tu club</p>
+<p>Crea tu historia como entrenador</p>
 
-<select id="clubSelect">
-<option>Real Madrid</option>
-<option>FC Barcelona</option>
-<option>Manchester City</option>
-</select>
+
+<select id="clubSelect"></select>
+
 
 <button onclick="startCareer()">
 🚀 COMENZAR CARRERA
 </button>
 
+
 </div>
+
+
+
 
 
 <div id="career" class="hidden">
 
+
+<header>
+
 <h1 id="clubName"></h1>
 
+<p>Temporada 2026/27</p>
+
+</header>
+
+
+
+<div class="grid">
+
+
+<div class="card">
+
 <h2>👔 Presidente</h2>
+
 <p id="president"></p>
 
+</div>
+
+
+
+<div class="card">
+
 <h2>💰 Presupuesto</h2>
+
 <p id="budget"></p>
 
+</div>
 
-<button id="eventBtn">
-🎲 Generar evento
-</button>
+
+
+<div class="card">
+
+<h2>📊 Confianza</h2>
+
+<p id="trust"></p>
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="news">
+
+<h2>📰 Noticias del club</h2>
 
 <div id="events"></div>
 
-</div>
-<h1 style="color:red">
-PRUEBA GITHUB ACTUALIZADA
-</h1>
 
+<button onclick="newEvent()">
+🎲 Generar evento
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script src="database.js"></script>
 <script src="app.js"></script>
 
+
 </body>
+
 </html>
