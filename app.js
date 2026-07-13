@@ -2,7 +2,7 @@ let Carriera = {};
 
 const select = document.getElementById("clubSelect");
 
-Object.keys(CLUBS).forEach(club => {
+Object.keys(FC26_DATABASE).forEach(club=>{
 
 let option = document.createElement("option");
 
