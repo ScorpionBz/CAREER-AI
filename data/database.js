@@ -1,68 +1,68 @@
-const CLUBS={
+const CLUBS = {
 
 
 "Real Madrid":{
 
-league:"LaLiga",
+president:"Florentino Pérez",
 
 budget:180000000,
 
-president:"Florentino Pérez"
+objective:"Ganar Champions League"
 
 },
 
 
 "FC Barcelona":{
 
-league:"LaLiga",
+president:"Joan Laporta",
 
 budget:120000000,
 
-president:"Joan Laporta"
+objective:"Volver a dominar Europa"
 
 },
 
 
 "Manchester City":{
 
-league:"Premier League",
+president:"Sheikh Mansour",
 
 budget:200000000,
 
-president:"Sheikh Mansour"
+objective:"Ganar todos los títulos"
 
 },
 
 
 "Liverpool":{
 
-league:"Premier League",
+president:"Fenway Sports Group",
 
 budget:150000000,
 
-president:"Fenway Sports Group"
+objective:"Competir por la Premier"
 
 },
 
 
 "Bayern Munich":{
 
-league:"Bundesliga",
+president:"Herbert Hainer",
 
 budget:140000000,
 
-president:"Herbert Hainer"
+objective:"Mantener dominio alemán"
 
 },
 
 
 "PSG":{
 
-league:"Ligue 1",
+president:"Nasser Al-Khelaifi",
 
 budget:170000000,
 
-president:"Nasser Al-Khelaifi"
+objective:"Ganar Champions"
 
 }
 
