@@ -1,125 +1,469 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b14">
 
-<title>Career AI 3.1</title>
+  <title>Anime AI Studio</title>
 
-<link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div id="setup" class="screen">
+<header class="topbar">
 
-<h1>⚽ CAREER AI 3.1</h1>
+  <div class="brand">
+    <span class="logo">✦</span>
+    <span>Anime AI Studio</span>
+  </div>
 
-<p>Crea tu historia como entrenador</p>
-
-
-<select id="clubSelect"></select>
-
-
-<button onclick="startCareer()">
-🚀 COMENZAR CARRERA
-</button>
-
-
-<button onclick="continueCareer()">
-💾 CONTINUAR CARRERA
-</button>
-
-
-</div>
-
-
-
-<div id="career" class="hidden">
-
-
-<header>
-
-<h1 id="clubName"></h1>
-
-<p>Temporada 2026/27</p>
+  <button id="newProject" class="ghost">
+    ＋ Nuevo proyecto
+  </button>
 
 </header>
 
-<div class="card">
 
-<h2>🏆 Puntos</h2>
+<main class="app">
 
-<p id="points">0 pts</p>
+  <aside class="sidebar">
 
-</div>
+    <button class="nav active" data-view="studio">
+      🎬 Estudio
+    </button>
 
+    <button class="nav" data-view="characters">
+      👤 Personajes
+    </button>
 
-<div class="grid">
+    <button class="nav" data-view="scenes">
+      🎞️ Escenas
+    </button>
 
+    <button class="nav" data-view="voices">
+      🎙️ Voces
+    </button>
 
-<div class="card">
-<h2>👔 Presidente</h2>
-<p id="president"></p>
-</div>
+    <button class="nav" data-view="export">
+      📦 Exportar
+    </button>
 
+    <div class="side-bottom">
 
-<div class="card">
-<h2>💰 Presupuesto</h2>
-<p id="budget"></p>
-</div>
+      <span>Proyecto</span>
 
+      <strong id="projectNameSide">
+        Mi Anime
+      </strong>
 
-<div class="card">
-<h2>📊 Confianza</h2>
-<p id="trust"></p>
-</div>
+    </div>
 
-
-<div class="card">
-<h2>🎯 Objetivo</h2>
-<p id="objective"></p>
-</div>
-
-
-</div>
-
+  </aside>
 
 
-<div class="news">
-
-<h2>📰 Noticias del club</h2>
-
-<div id="events"></div>
+  <section class="content">
 
 
-<button onclick="newEvent()">
-🎲 Generar evento
-</button>
+    <!-- ESTUDIO -->
+
+    <div id="studioView" class="view">
+
+      <div class="hero">
+
+        <div>
+
+          <p class="eyebrow">
+            CREACIÓN CON IA
+          </p>
+
+          <h1>
+            Convierte tu guion en un anime.
+          </h1>
+
+          <p class="subtitle">
+            Escribe una historia y Anime AI Studio
+            la transforma en personajes, escenas,
+            diálogos y una producción lista para IA.
+          </p>
+
+        </div>
+
+        <div class="hero-orb">
+          ✦
+        </div>
+
+      </div>
 
 
-</div>
+      <div class="grid two">
 
 
-</div>
+        <!-- GUION -->
 
-<div class="card">
+        <section class="card">
 
-<h2>🌍 Liga</h2>
+          <div class="card-title">
 
-<p id="league"></p>
+            <h2>
+              Tu guion
+            </h2>
 
-</div>
+            <span id="charCount">
+              0 caracteres
+            </span>
+
+          </div>
 
 
-<script src="database.js"></script>
-<script src="match_engine.js"></script>
-<script src="app.js"></script>
+          <input
+            id="projectName"
+            class="input"
+            placeholder="Nombre del proyecto"
+            value="Mi Anime"
+          >
 
+
+          <textarea
+            id="script"
+            placeholder="Escribe aquí tu guion..."
+          ></textarea>
+
+
+          <div class="actions">
+
+            <button
+              id="demoScript"
+              class="secondary"
+            >
+              ✨ Cargar ejemplo
+            </button>
+
+
+            <button
+              id="generate"
+              class="primary"
+            >
+              🚀 Analizar guion
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- CONFIGURACIÓN -->
+
+        <section class="card">
+
+          <div class="card-title">
+
+            <h2>
+              Configuración
+            </h2>
+
+          </div>
+
+
+          <label>
+
+            Formato
+
+            <select id="format">
+
+              <option value="anime">
+                🎬 Anime
+              </option>
+
+              <option value="manga">
+                📖 Manga
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <label>
+
+            Estilo visual
+
+            <select id="style">
+
+              <option>
+                Anime cinematográfico
+              </option>
+
+              <option>
+                Shonen de acción
+              </option>
+
+              <option>
+                Romance anime
+              </option>
+
+              <option>
+                Fantasía oscura
+              </option>
+
+              <option>
+                Manga blanco y negro
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <label>
+
+            Idioma
+
+            <select id="language">
+
+              <option>
+                Español
+              </option>
+
+              <option>
+                English
+              </option>
+
+              <option>
+                日本語
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <label>
+
+            Duración por escena
+
+            <select id="duration">
+
+              <option value="8">
+                8 segundos
+              </option>
+
+              <option value="12">
+                12 segundos
+              </option>
+
+              <option value="20">
+                20 segundos
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <div class="notice">
+
+            💡 Esta versión analiza el guion y
+            guarda el proyecto en tu dispositivo.
+
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <!-- RESULTADO -->
+
+      <section class="card">
+
+        <div class="card-title">
+
+          <h2>
+            Resultado
+          </h2>
+
+          <span id="status">
+            Esperando guion
+          </span>
+
+        </div>
+
+
+        <div id="result" class="empty">
+
+          Escribe un guion y pulsa
+          <b>Analizar guion</b>.
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+
+    <!-- PERSONAJES -->
+
+    <div
+      id="charactersView"
+      class="view hidden"
+    >
+
+      <div class="page-head">
+
+        <h1>
+          👤 Personajes
+        </h1>
+
+        <p>
+          Personajes detectados en tu guion.
+        </p>
+
+      </div>
+
+
+      <div
+        id="charactersList"
+        class="cards"
+      ></div>
+
+    </div>
+
+
+
+    <!-- ESCENAS -->
+
+    <div
+      id="scenesView"
+      class="view hidden"
+    >
+
+      <div class="page-head">
+
+        <h1>
+          🎞️ Escenas
+        </h1>
+
+        <p>
+          Storyboard generado automáticamente.
+        </p>
+
+      </div>
+
+
+      <div
+        id="scenesList"
+        class="scene-list"
+      ></div>
+
+    </div>
+
+
+
+    <!-- VOCES -->
+
+    <div
+      id="voicesView"
+      class="view hidden"
+    >
+
+      <div class="page-head">
+
+        <h1>
+          🎙️ Voces
+        </h1>
+
+        <p>
+          Configura una voz para cada personaje.
+        </p>
+
+      </div>
+
+
+      <div
+        id="voicesList"
+        class="cards"
+      ></div>
+
+    </div>
+
+
+
+    <!-- EXPORTAR -->
+
+    <div
+      id="exportView"
+      class="view hidden"
+    >
+
+      <div class="page-head">
+
+        <h1>
+          📦 Exportar
+        </h1>
+
+        <p>
+          Prepara tu proyecto.
+        </p>
+
+      </div>
+
+
+      <div class="card export-card">
+
+        <h2 id="exportTitle">
+          Mi Anime
+        </h2>
+
+        <p id="exportSummary">
+          Analiza un guion primero.
+        </p>
+
+
+        <div class="actions">
+
+          <button
+            id="downloadJson"
+            class="primary"
+          >
+            ⬇ Descargar proyecto
+          </button>
+
+
+          <button
+            id="copyPrompt"
+            class="secondary"
+          >
+            📋 Copiar prompt
+          </button>
+
+        </div>
+
+
+        <div class="notice">
+
+          🚀 Próximamente:
+          generación de imágenes,
+          voces, animación,
+          sincronización labial,
+          música y render MP4.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+</main>
+
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
